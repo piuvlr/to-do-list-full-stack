@@ -1,0 +1,11 @@
+package br.com.caio.todo.tasks.service;
+
+import java.util.List;
+
+import br.com.caio.todo.tasks.vo.TasksVO;
+
+public interface TaskService {
+	
+	public List<TasksVO> loadTasks(Integer userId);
+
+}

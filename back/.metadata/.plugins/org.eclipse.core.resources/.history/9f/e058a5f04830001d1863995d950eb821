@@ -1,0 +1,10 @@
+package br.com.caio.todo.tasks.vo;
+
+import java.util.Date;
+
+public class UserVO {
+	private Integer id;
+	private String userName;
+	private Date creationDate;
+
+}

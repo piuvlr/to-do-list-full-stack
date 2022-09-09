@@ -1,0 +1,9 @@
+package br.com.caio.todo.tasks.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.caio.todo.tasks.model.Tasks;
+
+public interface TasksRepository extends JpaRepository<Tasks, Integer> {
+
+}

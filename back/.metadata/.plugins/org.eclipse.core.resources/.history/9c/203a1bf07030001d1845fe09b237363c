@@ -1,0 +1,14 @@
+package br.com.caio.todo.tasks.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.caio.todo.tasks.model.Tasks;
+import br.com.caio.todo.tasks.vo.TasksVO;
+
+public interface TasksRepository extends JpaRepository<Tasks, Integer> {
+	
+	public List<TasksVO> loadTasks()
+
+}

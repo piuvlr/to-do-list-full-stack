@@ -1,0 +1,15 @@
+package br.com.caio.todo.tasks.service;
+
+import br.com.caio.todo.tasks.vo.UserVO;
+
+public class UserServiceImpl implements UserService {
+	
+	private UserBO userBO;
+
+	@Override
+	public UserVO findUserByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

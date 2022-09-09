@@ -1,0 +1,13 @@
+package br.com.caio.todo.tasks.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import br.com.caio.todo.tasks.model.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+	
+	@Query(name = User.FIND_USER_BY_USER_NAME)
+	public User loadUser(String userName);
+	
+}

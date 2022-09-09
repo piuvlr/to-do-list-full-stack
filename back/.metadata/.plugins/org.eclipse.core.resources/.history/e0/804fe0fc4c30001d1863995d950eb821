@@ -1,0 +1,26 @@
+package br.com.caio.todo.tasks.bo;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
+import br.com.caio.todo.tasks.vo.UserVO;
+
+@Repository
+public class UserBO {
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	public UserVO findUserByUserName(String userName) {
+		Query qr = entityManager.createNamedQuery(userName);
+		qr.setParameter("userName", userName);
+		
+		UserVO userVO = (UserVO) qr.getSingleResult();
+		
+		return userVO;
+	}
+
+}

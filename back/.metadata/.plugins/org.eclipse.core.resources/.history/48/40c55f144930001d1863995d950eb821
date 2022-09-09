@@ -1,0 +1,19 @@
+package br.com.caio.todo.tasks.vo;
+
+import java.util.Date;
+
+import br.com.caio.todo.tasks.model.User;
+import br.com.caio.todo.tasks.status.StatusTaskEnum;
+
+public class TasksVO {
+
+	private Integer id;
+	private User user;
+	private String nameTask;
+	private String description;
+	private StatusTaskEnum statusTask;
+	private Date creationDate;
+	private Date completedDate;
+	private Date deadlineDate;
+
+}

@@ -1,0 +1,32 @@
+package br.com.caio.todo.tasks.bo;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import br.com.caio.todo.tasks.model.Tasks;
+import br.com.caio.todo.tasks.repository.TasksRepository;
+import br.com.caio.todo.tasks.vo.TasksVO;
+
+@Repository
+public class TaskBO {
+	
+	@Autowired
+	private TasksRepository tasksRepository;
+	
+	public List<Tasks> loadTasks(Integer userId) {
+		Query qr = this.entityManager.createNamedQuery(Tasks.FIND_TASKS_BY_USER_ID);
+		qr.setParameter("userId", userId);
+		
+		@SuppressWarnings("unchecked")
+		List<Tasks> result = qr.getResultList();
+		
+		return result;
+	}
+
+}

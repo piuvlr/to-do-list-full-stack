@@ -1,0 +1,19 @@
+package br.com.caio.todo.tasks.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.caio.todo.tasks.bo.UserBO;
+import br.com.caio.todo.tasks.vo.UserVO;
+
+public class UserServiceImpl implements UserService {
+	
+	@Autowired
+	private UserBO userBO;
+
+	@Override
+	public UserVO findUserByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

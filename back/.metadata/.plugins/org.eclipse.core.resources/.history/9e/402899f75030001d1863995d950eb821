@@ -1,0 +1,15 @@
+package br.com.caio.todo.tasks.service;
+
+import java.util.List;
+
+import br.com.caio.todo.tasks.vo.TasksVO;
+
+public class TaskServiceImpl implements TaskService {
+
+	@Override
+	public List<TasksVO> loadTasks(Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
