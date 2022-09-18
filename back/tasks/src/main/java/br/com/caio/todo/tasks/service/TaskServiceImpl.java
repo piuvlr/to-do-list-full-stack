@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import br.com.caio.todo.tasks.bo.TaskBO;
 import br.com.caio.todo.tasks.bo.UserBO;
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.model.User;
+import br.com.caio.todo.tasks.status.StatusTaskEnum;
 import br.com.caio.todo.tasks.utils.TaskUtils;
 import br.com.caio.todo.tasks.vo.TasksVO;
 
@@ -56,11 +58,4 @@ public class TaskServiceImpl implements TaskService {
 		
 		return result;
 	}
-
-	@Override
-	public boolean changeStatus(Integer status, Integer id) {
-		
-		return false;
-	}
-
 }

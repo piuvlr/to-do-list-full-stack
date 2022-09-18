@@ -17,7 +17,4 @@ public interface TaskService {
 	public List<TasksVO> loadTasksPeriod(Date iniDate, Date endDate);
 
 	public boolean deleteTask(Integer id);
-
-	public boolean changeStatus(Integer status, Integer id);
-
 }

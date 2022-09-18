@@ -1,12 +1,14 @@
 <div class="container">
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Tarefas em progresso">
-      <mat-grid-list  cols="3" rowHeight="180">
+      <mat-grid-list [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskInProgress">
           <mat-grid-tile>
             <mat-card>
               <mat-card-subtitle>
-                {{ task.creationDate | date: "dd/MM/yyyy"}}
+                <span>
+                  {{ task.creationDate | date: "dd/MM/yyyy"}}
+                </span>
               </mat-card-subtitle>
               <mat-card-title>{{ task.nameTask }}</mat-card-title>
               <mat-card-content>
@@ -14,7 +16,7 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button disabled mat-button>Concluída</button>
+                <button mat-button>Concluída</button>
                 <button (click)="deleteTask(task)" mat-button>Excluir</button>
               </mat-card-actions>
             </mat-card>
@@ -23,12 +25,14 @@
       </mat-grid-list>
     </mat-tab>
     <mat-tab label="Tarefas vencidas">
-      <mat-grid-list  cols="3" rowHeight="180">
+      <mat-grid-list [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskVencidas">
           <mat-grid-tile>
             <mat-card>
               <mat-card-subtitle>
-                {{ task.creationDate | date: "dd/MM/yyyy"}}
+                <span>
+                  {{ task.creationDate | date: "dd/MM/yyyy"}}
+                </span>
               </mat-card-subtitle>
               <mat-card-title>{{ task.nameTask }}</mat-card-title>
               <mat-card-content>
@@ -45,12 +49,14 @@
       </mat-grid-list>
     </mat-tab>
     <mat-tab label="Tarefas completas">
-      <mat-grid-list  cols="3" rowHeight="180">
+      <mat-grid-list [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskCompleted">
           <mat-grid-tile>
             <mat-card>
               <mat-card-subtitle>
-                {{ task.creationDate | date: "dd/MM/yyyy"}}
+                <span>
+                  {{ task.creationDate | date: "dd/MM/yyyy"}}
+                </span>
               </mat-card-subtitle>
               <mat-card-title>{{ task.nameTask }}</mat-card-title>
               <mat-card-content>
@@ -58,7 +64,7 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button mat-button>Concluída</button>
+                <button disabled mat-button>Concluída</button>
                 <button (click)="deleteTask(task)" mat-button>Excluir</button>
               </mat-card-actions>
             </mat-card>
@@ -68,4 +74,3 @@
     </mat-tab>
   </mat-tab-group>
 </div>
-

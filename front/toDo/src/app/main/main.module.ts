@@ -9,8 +9,12 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UtilsInterceptor } from './utils.interceptor';
-
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 
@@ -27,7 +31,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDividerModule,
     MatButtonModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UtilsInterceptor, multi: true }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Repository;
 
 import br.com.caio.todo.tasks.model.Tasks;
@@ -39,5 +40,4 @@ public class TaskBO {
 		
 		return true;
 	}
-
 }

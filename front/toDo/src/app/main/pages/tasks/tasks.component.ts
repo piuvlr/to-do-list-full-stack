@@ -4,16 +4,19 @@ import { TasksService } from '../../services/tasks.service';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
+
   taskInProgress: any[] = [];
   taskVencidas: any[] = [];
   taskCompleted: any[] = [];
+  breakpoint: number = 3;
 
   constructor(private _taskService: TasksService) { }
 
   ngOnInit(): void {
+    this.responsiveGrid();
+
     this.listTasks();
   }
 
@@ -62,6 +65,16 @@ export class TasksComponent implements OnInit {
       }
     )
     console.log(this.taskInProgress)
+  }
+
+  private responsiveGrid(): void {
+    if (window.innerWidth >= 1000) {
+      this.breakpoint = 3;
+    } else if (window.innerWidth >= 700) {
+      this.breakpoint = 2;
+    } else {
+      this.breakpoint = 1;
+    }
   }
 }
 
