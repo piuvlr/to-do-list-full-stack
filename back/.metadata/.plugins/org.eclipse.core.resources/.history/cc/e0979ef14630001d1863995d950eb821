@@ -1,8 +1,0 @@
-package br.com.caio.todo.tasks.model;
-
-import javax.persistence.Entity;
-
-@Entity
-public class User {
-
-}

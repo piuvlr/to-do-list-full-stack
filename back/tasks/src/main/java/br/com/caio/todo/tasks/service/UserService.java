@@ -9,4 +9,6 @@ public interface UserService {
 	
 	public UserVO findUserByUserName(String userName);
 
+	public UserVO registerUser(UserVO userRequestVO);
+
 }

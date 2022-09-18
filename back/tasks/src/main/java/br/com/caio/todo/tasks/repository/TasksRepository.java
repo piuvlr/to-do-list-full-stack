@@ -1,5 +1,6 @@
 package br.com.caio.todo.tasks.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,8 @@ public interface TasksRepository extends JpaRepository<Tasks, Integer> {
 	
 	@Query(name = Tasks.FIND_TASKS_BY_USER_ID)
 	public List<Tasks> loadTasks(Integer userId);
+	
+	@Query(name = Tasks.FIND_TASKS_BY_PERIOD)
+	public List<Tasks> loadTasksByPeriod(Date iniDate, Date endDate, Integer userId);
 
 }

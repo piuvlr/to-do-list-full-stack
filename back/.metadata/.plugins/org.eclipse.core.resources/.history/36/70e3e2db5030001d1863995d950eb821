@@ -1,5 +1,0 @@
-package br.com.caio.todo.tasks.service;
-
-public class TaskServiceImpl implements TaskService {
-
-}

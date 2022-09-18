@@ -1,0 +1,37 @@
+package br.com.caio.todo.tasks.bo;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import br.com.caio.todo.tasks.model.Tasks;
+import br.com.caio.todo.tasks.repository.TasksRepository;
+import br.com.caio.todo.tasks.vo.TasksVO;
+
+@Repository
+public class TaskBO {
+	
+	@Autowired
+	private TasksRepository tasksRepository;
+	
+	public List<Tasks> loadTasks(Integer userId) {
+		List<Tasks> result = tasksRepository.loadTasks(userId);
+		
+		return result;
+	}
+	
+	public Tasks createTask(Tasks tasks) {
+		tasksRepository.save(tasks);
+		System.out.println("Task criada com sucesso!");
+
+		return tasks;
+	}
+
+	public List<TasksVO> loadTasksPeriod(Date iniDate, Date endDate, Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

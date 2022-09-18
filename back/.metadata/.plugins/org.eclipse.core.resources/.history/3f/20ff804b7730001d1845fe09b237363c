@@ -1,5 +1,0 @@
-package br.com.caio.todo.tasks.repository;
-
-public interface UserRepository {
-
-}

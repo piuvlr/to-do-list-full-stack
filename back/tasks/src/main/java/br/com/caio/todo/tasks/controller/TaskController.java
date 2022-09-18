@@ -1,5 +1,7 @@
 package br.com.caio.todo.tasks.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caio.todo.tasks.service.TaskService;
@@ -24,20 +26,55 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 	
-	@RequestMapping(value = "/load-tasks")
-	public ResponseEntity<List<TasksVO>> loadTasks(HttpServletRequest httpServletRequest,
-			@RequestParam(required = true, value = "user-id") Integer userId) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<TasksVO>> loadTasks(HttpServletRequest httpServletRequest) {
+		List<TasksVO> result = taskService.loadTasks();
 		
-		List<TasksVO> result = taskService.loadTasks(userId);
 		return new ResponseEntity<List<TasksVO>>(result, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ResponseEntity<TasksVO> loadTasks(@RequestBody TasksVO tasksVO) {
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<TasksVO> createTask(@RequestBody TasksVO tasksVO) {
 		
 		TasksVO result = taskService.createTasks(tasksVO);
 		return new ResponseEntity<TasksVO>(result, HttpStatus.CREATED);
 	}
 	
-
+	@RequestMapping(method = RequestMethod.DELETE)
+	public ResponseEntity<Boolean> deleteTask(
+			@RequestParam(required = true, value = "id") Integer id) {
+		
+		boolean result = taskService.deleteTask(id);
+		return new ResponseEntity<Boolean>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method =  RequestMethod.PUT)
+	public ResponseEntity<Boolean> changeStatus(
+			@RequestParam(required = true, value = "status") Integer status,
+			@RequestParam(required = true, value = "id") Integer id) {
+		
+		boolean result = taskService.changeStatus(status, id);
+		return new ResponseEntity<Boolean>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/load-tasks-period", method = RequestMethod.GET)
+	public ResponseEntity<List<TasksVO>> loadTasksPeriod(
+			@RequestParam(value = "ini", required = true) String dateInit,
+			@RequestParam(value = "end", required = true) String dateEnd) {
+		
+		Date iniDate = new Date();
+		Date endDate = new Date();
+		
+		try {
+			SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
+		    iniDate = formatterDate.parse(dateInit);
+		    endDate = formatterDate.parse(dateEnd);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+		List<TasksVO> result = taskService.loadTasksPeriod(iniDate, endDate);
+		return new ResponseEntity<List<TasksVO>>(result, HttpStatus.OK);
+	}
+	
 }

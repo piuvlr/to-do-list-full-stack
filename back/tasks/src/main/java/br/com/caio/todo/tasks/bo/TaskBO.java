@@ -1,17 +1,13 @@
 package br.com.caio.todo.tasks.bo;
 
+import java.util.Date;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.repository.TasksRepository;
-import br.com.caio.todo.tasks.vo.TasksVO;
 
 @Repository
 public class TaskBO {
@@ -30,6 +26,18 @@ public class TaskBO {
 		System.out.println("Task criada com sucesso!");
 
 		return tasks;
+	}
+
+	public List<Tasks> loadTasksPeriod(Date iniDate, Date endDate, Integer userId) {
+		List<Tasks> result = tasksRepository.loadTasksByPeriod(iniDate, endDate, userId);
+		
+		return result;
+	}
+
+	public boolean deleteTask(Integer id) {
+		tasksRepository.deleteById(id);
+		
+		return true;
 	}
 
 }

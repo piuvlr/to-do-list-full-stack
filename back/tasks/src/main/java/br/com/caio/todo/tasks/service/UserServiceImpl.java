@@ -21,4 +21,12 @@ public class UserServiceImpl implements UserService {
 		
 		return userVO;
 	}
+
+	@Override
+	public UserVO registerUser(UserVO userRequestVO) {
+		User user = userRequestVO.parseToEntity(userRequestVO);
+		user = userBO.registerUser(user);
+		
+		return UserVO.parse(user);
+	}
 }

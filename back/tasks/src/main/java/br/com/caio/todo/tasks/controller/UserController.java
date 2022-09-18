@@ -1,16 +1,19 @@
 package br.com.caio.todo.tasks.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.caio.todo.tasks.service.AuthenticService;
 import br.com.caio.todo.tasks.service.UserService;
+import br.com.caio.todo.tasks.vo.TokenVO;
 import br.com.caio.todo.tasks.vo.UserVO;
 
 @RestController
@@ -18,13 +21,35 @@ import br.com.caio.todo.tasks.vo.UserVO;
 public class UserController {
 	
 	@Autowired
+	private AuthenticService authenticService;
+	
+	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ResponseEntity<UserVO> login(HttpServletRequest httpServletRequest,
-			@RequestParam(required = true, value = "user-name") String userName) {
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<TokenVO> login(@RequestBody UserVO userVO) {
+		UsernamePasswordAuthenticationToken dadosLogin = authenticService.authenticConvert(userVO);
 		
-		UserVO userVO = userService.findUserByUserName(userName);
-		return new ResponseEntity<UserVO>(userVO, HttpStatus.OK);
+		try {
+			Authentication authentication = authenticationManager.authenticate(dadosLogin);
+			String token = authenticService.generateToken(authentication);
+			return ResponseEntity.ok(new TokenVO(token, "Bearer"));
+		} catch (AuthenticationException e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<TokenVO> register(@RequestBody UserVO userRequestVO) {
+		UserVO result = userService.registerUser(userRequestVO);
+		
+		if (result != null) {
+			return this.login(userRequestVO);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

@@ -18,18 +18,21 @@ import br.com.caio.todo.tasks.status.StatusTaskEnum;
 @Entity
 @Table(name = "TASKS")
 @NamedQueries({
-	@NamedQuery(name = Tasks.FIND_TASKS_BY_USER_ID, query = "select t from Tasks t where t.user.id = :userId")
+	@NamedQuery(name = Tasks.FIND_TASKS_BY_USER_ID, query = "select t from Tasks t where t.user.id = :userId"),
+	@NamedQuery(name = Tasks.FIND_TASKS_BY_PERIOD, query = "select t from Tasks t "
+			+ "where t.user.id = :userId and t.creationDate between :iniDate and :endDate")
 })
 public class Tasks {
 
 	public static final String FIND_TASKS_BY_USER_ID = "Tasks.FIND_TASKS_BY_USER_ID";
+	public static final String FIND_TASKS_BY_PERIOD = "Tasks.FIND_TASKS_BY_PERIOD";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "USER_ID", nullable = false)
+	@JoinColumn(name = "USER_ID", nullable = true)
 	private User user;
 
 	@Column(name = "NAME_TASK", nullable = true, length = 80)
@@ -49,6 +52,9 @@ public class Tasks {
 
 	@Column(name = "DEADLINE_DATE")
 	private Date deadlineDate;
+	
+	@Column(name = "TASK_REMOVED")
+	private Boolean removed;
 
 	public Integer getId() {
 		return id;
