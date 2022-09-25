@@ -1,7 +1,7 @@
 <div class="container">
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Tarefas em progresso">
-      <mat-grid-list [cols]="breakpoint" rowHeight="180">
+      <mat-grid-list *ngIf="taskInProgress.length !== 0; else noTasks" [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskInProgress">
           <mat-grid-tile>
             <mat-card>
@@ -25,7 +25,7 @@
       </mat-grid-list>
     </mat-tab>
     <mat-tab label="Tarefas vencidas">
-      <mat-grid-list [cols]="breakpoint" rowHeight="180">
+      <mat-grid-list *ngIf="taskVencidas.length !== 0; else noTasks" [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskVencidas">
           <mat-grid-tile>
             <mat-card>
@@ -49,7 +49,7 @@
       </mat-grid-list>
     </mat-tab>
     <mat-tab label="Tarefas completas">
-      <mat-grid-list [cols]="breakpoint" rowHeight="180">
+      <mat-grid-list *ngIf="taskCompleted.length !== 0; else noTasks" [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskCompleted">
           <mat-grid-tile>
             <mat-card>
@@ -74,3 +74,9 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+
+<ng-template class="text-center" #noTasks>
+  <h2 class="text-center mt-2 mx-3">
+    <mat-card>Não há tarefas </mat-card>
+  </h2>
+</ng-template>

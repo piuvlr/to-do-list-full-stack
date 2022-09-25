@@ -23,4 +23,14 @@ export class AuthenticationService {
     localStorage.setItem('token', token.token);
     localStorage.setItem('typeToken', token.typeRequest);
   }
+
+  postRegister(userName: string, password: string): Observable<any> {
+    const body = {
+      userName: userName,
+      password: password
+    }
+
+    return this._httpClient.post<any>('http://localhost:8080/user/register', body)
+  }
+
 }

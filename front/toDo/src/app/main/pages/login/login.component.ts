@@ -43,4 +43,8 @@ export class LoginComponent implements OnInit {
       duration: 2500,
     });
   }
+
+  register(): void {
+    this._router.navigateByUrl('/register')
+  }
 }

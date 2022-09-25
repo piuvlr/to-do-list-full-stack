@@ -39,7 +39,6 @@ export class TasksComponent implements OnInit {
   }
 
   updateViewDeleteTask(task: any) {
-    debugger;
     if (task.statusTask === statusTask.PROGRESS) {
       const index = this.taskInProgress.findIndex(task => task.id === task.id);
       this.taskInProgress.splice(index, 1)
