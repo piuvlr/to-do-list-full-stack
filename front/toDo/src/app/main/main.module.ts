@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NewTaskComponent } from './pages/new-task/new-task.component';
 
 
 
@@ -24,7 +25,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    TasksComponent
+    TasksComponent,
+    NewTaskComponent
   ],
   imports: [
     CommonModule,
