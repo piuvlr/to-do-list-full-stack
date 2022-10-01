@@ -25,7 +25,7 @@ public class ValidationTimeTasks {
 	
 	    @Scheduled(cron = "59 59 23 * * *") 
 	    @Transactional
-	    public void verificaPorHora() { 
+	    public void verificationTasks() { 
 	        System.out.println("Executrando tarefa" + new Date());
 	        
 	        List<Tasks> result = this.taskService.getAllTasks();

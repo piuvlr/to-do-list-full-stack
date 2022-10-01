@@ -18,6 +18,7 @@ import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { UtilsInterceptor } from './utils.interceptor';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -43,7 +44,8 @@ import { UtilsInterceptor } from './utils.interceptor';
     MatInputModule,
     MatSnackBarModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatBadgeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UtilsInterceptor, multi: true },

@@ -1,6 +1,10 @@
 <div class="container">
   <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Tarefas em progresso">
+    <mat-tab>
+        <ng-template mat-tab-label>
+          <span *ngIf="taskInProgress.length !== 0" [matBadge]="taskInProgress.length" matBadgeOverlap="false">Tarefas em progesso</span>
+          <span *ngIf="taskInProgress.length === 0">Tarefas em progesso</span>
+        </ng-template>
       <mat-grid-list *ngIf="taskInProgress.length !== 0; else noTasks" [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskInProgress">
           <mat-grid-tile>
@@ -24,7 +28,11 @@
         </div>
       </mat-grid-list>
     </mat-tab>
-    <mat-tab label="Tarefas vencidas">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span *ngIf="taskVencidas.length !== 0" [matBadge]="taskVencidas.length" matBadgeOverlap="false">Tarefas vencidas</span>
+        <span *ngIf="taskVencidas.length === 0">Tarefas vencidas</span>
+      </ng-template>
       <mat-grid-list *ngIf="taskVencidas.length !== 0; else noTasks" [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskVencidas">
           <mat-grid-tile>
@@ -48,7 +56,11 @@
         </div>
       </mat-grid-list>
     </mat-tab>
-    <mat-tab label="Tarefas completas">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span *ngIf="taskCompleted.length !== 0" [matBadge]="taskCompleted.length" matBadgeOverlap="false">Tarefas concluidas</span>
+        <span *ngIf="taskCompleted.length === 0">Tarefas concluidas</span>
+      </ng-template>
       <mat-grid-list *ngIf="taskCompleted.length !== 0; else noTasks" [cols]="breakpoint" rowHeight="180">
         <div *ngFor="let task of taskCompleted">
           <mat-grid-tile>

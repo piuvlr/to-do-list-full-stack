@@ -38,6 +38,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 			try {
 				authz.antMatchers(HttpMethod.POST, "/user/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/user/register").permitAll()
+				.antMatchers(HttpMethod.POST, "/user/logout").permitAll()
 				.anyRequest()
 				.authenticated().and().cors().and().csrf().disable().sessionManagement()
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()

@@ -28,10 +28,6 @@ export class NewTaskComponent implements OnInit {
   createTask() {
     const task: TaskModel = this.newTaskForm.getRawValue();
 
-    console.log(this.newTaskForm.getRawValue())
-
-    console.log(task)
-
     this._tasksService.postTask(task).subscribe({
       next: (success) => {
         this._router.navigateByUrl('tasks')
