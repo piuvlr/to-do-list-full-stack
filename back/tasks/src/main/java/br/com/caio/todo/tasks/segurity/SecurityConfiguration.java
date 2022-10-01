@@ -8,10 +8,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -33,7 +38,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 			try {
 				authz.antMatchers(HttpMethod.POST, "/user/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/user/register").permitAll()
-				.anyRequest().authenticated().and().cors().and().csrf().disable().sessionManagement()
+				.anyRequest()
+				.authenticated().and().cors().and().csrf().disable().sessionManagement()
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 						.addFilterBefore(new AutenticacaoViaTokenFilter(authenticService, userRepository),
 								UsernamePasswordAuthenticationFilter.class);
@@ -44,7 +50,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 		return http.build();
 	}
 	
-
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
@@ -63,16 +68,3 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 		return new BCryptPasswordEncoder();
 	}
 }
-
-/*
- * @Bean public SecurityFilterChain filterChain(HttpSecurity http) throws
- * Exception { http.authorizeHttpRequests((authz) -> { try {
- * authz.antMatchers(HttpMethod.GET, "/topicos").permitAll()
- * .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
- * .antMatchers(HttpMethod.POST, "/auth").permitAll()
- * .anyRequest().authenticated().and().csrf().disable().sessionManagement().
- * sessionCreationPolicy(SessionCreationPolicy.STATELESS)
- * .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService,
- * userRepository), UsernamePasswordAuthenticationFilter.class); } catch
- * (Exception e) { e.printStackTrace(); } }); return http.build(); }
- */

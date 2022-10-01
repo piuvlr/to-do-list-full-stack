@@ -16,7 +16,7 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button mat-button>Concluída</button>
+                <button (click)="completedTask(task)" mat-button>Concluída</button>
                 <button (click)="deleteTask(task)" mat-button>Excluir</button>
               </mat-card-actions>
             </mat-card>
@@ -40,7 +40,7 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button mat-button>Concluída</button>
+                <button (click)="completedTask(task)" mat-button>Concluída</button>
                 <button (click)="deleteTask(task)" mat-button>Excluir</button>
               </mat-card-actions>
             </mat-card>

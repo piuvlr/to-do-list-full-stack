@@ -58,4 +58,16 @@ public class TaskServiceImpl implements TaskService {
 		
 		return result;
 	}
+
+	@Override
+	public TasksVO concluidTask(Integer id) {
+		Tasks task = taskBO.findTaskById(id);
+		
+		task.setStatusTask(StatusTaskEnum.COMPLETED);
+		
+		TasksVO tasksVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(), 
+				task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), task.getUser().getUsername());
+		
+		return tasksVO;
+	}
 }

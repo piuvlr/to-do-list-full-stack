@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskModel } from '../../models/task';
 import { TasksService } from '../../services/tasks.service';
 
 @Component({
@@ -7,9 +8,9 @@ import { TasksService } from '../../services/tasks.service';
 })
 export class TasksComponent implements OnInit {
 
-  taskInProgress: any[] = [];
-  taskVencidas: any[] = [];
-  taskCompleted: any[] = [];
+  taskInProgress: TaskModel[] = [];
+  taskVencidas: TaskModel[] = [];
+  taskCompleted: TaskModel[] = [];
   breakpoint: number = 3;
 
   constructor(private _taskService: TasksService) { }
@@ -38,7 +39,7 @@ export class TasksComponent implements OnInit {
     })
   }
 
-  updateViewDeleteTask(task: any) {
+  updateViewDeleteTask(task: TaskModel) {
     if (task.statusTask === statusTask.PROGRESS) {
       const index = this.taskInProgress.findIndex(task => task.id === task.id);
       this.taskInProgress.splice(index, 1)
@@ -51,7 +52,19 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  separeTaskForStatus(taskList: any[]) {
+  completedTask(task: TaskModel): void {
+    this._taskService.putEditTask(task.id).subscribe({
+      next: (success) => {
+        this.taskCompleted.push(success);
+        const listTasks = task.statusTask === statusTask.PROGRESS ? this.taskInProgress : this.taskVencidas;
+
+        const index = listTasks.findIndex(taskList => taskList.id === task.id)
+        listTasks.splice(index, 1);
+      }
+    })
+  }
+
+  separeTaskForStatus(taskList: TaskModel[]) {
     taskList.forEach(
       (task) => {
         if (task.statusTask === statusTask.PROGRESS) {
@@ -63,7 +76,6 @@ export class TasksComponent implements OnInit {
         }
       }
     )
-    console.log(this.taskInProgress)
   }
 
   private responsiveGrid(): void {

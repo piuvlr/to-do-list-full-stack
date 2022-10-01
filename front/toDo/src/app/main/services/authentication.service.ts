@@ -33,4 +33,8 @@ export class AuthenticationService {
     return this._httpClient.post<any>('http://localhost:8080/user/register', body)
   }
 
+  logout(): Observable<any> {
+    return this._httpClient.post<any>('http://localhost:8080/user/logout', null)
+  }
+
 }

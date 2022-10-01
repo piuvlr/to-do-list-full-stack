@@ -69,4 +69,12 @@ public class TaskController {
 		return new ResponseEntity<List<TasksVO>>(result, HttpStatus.OK);
 	}
 	
+	@RequestMapping(method = RequestMethod.PUT)
+	@Transactional
+	public ResponseEntity<TasksVO> concluedTask(@RequestBody int idTask) {
+		
+		TasksVO result = taskService.concluidTask(idTask);
+		
+		return new ResponseEntity<TasksVO>(result, HttpStatus.OK);
+	}
 }

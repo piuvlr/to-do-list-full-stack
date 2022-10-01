@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { formatDate } from './main/utils/utilsLib';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
 
     MainModule,
     BrowserModule,
@@ -27,7 +32,12 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-br'},
+    {
+      provide: MAT_DATE_FORMATS, useValue: formatDate.MY_FORMATS_DATE
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

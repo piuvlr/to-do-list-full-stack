@@ -2,6 +2,7 @@ package br.com.caio.todo.tasks.bo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.config.Task;
@@ -39,5 +40,10 @@ public class TaskBO {
 		tasksRepository.deleteById(id);
 		
 		return true;
+	}
+
+	public Tasks findTaskById(Integer id) {
+		Optional<Tasks> task = tasksRepository.findById(id);
+		return task.get();
 	}
 }

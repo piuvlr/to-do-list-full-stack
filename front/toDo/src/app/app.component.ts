@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './main/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,21 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private _router: Router) {}
+  isLogin: boolean = localStorage.getItem('token') ? true : false;
+
+  constructor(private _router: Router,
+    private _logout: AuthenticationService) {}
 
   newTask(): void {
     this._router.navigateByUrl('/new-task')
+  }
+
+  logout(): void {
+    this._logout.logout().subscribe({
+      next: (success) => {
+        localStorage.clear();
+        this._router.navigateByUrl('/login')
+      }
+    });
   }
 }
