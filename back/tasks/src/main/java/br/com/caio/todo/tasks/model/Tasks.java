@@ -21,13 +21,15 @@ import br.com.caio.todo.tasks.status.StatusTaskEnum;
 	@NamedQuery(name = Tasks.FIND_TASKS_BY_USER_ID, query = "select t from Tasks t where t.user.id = :userId"),
 	@NamedQuery(name = Tasks.FIND_TASKS_BY_PERIOD, query = "select t from Tasks t "
 			+ "where t.user.id = :userId and t.creationDate between :iniDate and :endDate"),
-	@NamedQuery(name = Tasks.FIND_TASK_BY_ID, query = "select t from Tasks t where t.id = :taskId")
+	@NamedQuery(name = Tasks.FIND_TASK_BY_ID, query = "select t from Tasks t where t.id = :taskId"),
+	@NamedQuery(name = Tasks.LOAD_ALL_TASKS, query = "select t from Tasks t where t.statusTask = 1")
 })
 public class Tasks {
 	
 	public static final String FIND_TASK_BY_ID = "Tasks.FIND_TASK_BY_ID";
 	public static final String FIND_TASKS_BY_USER_ID = "Tasks.FIND_TASKS_BY_USER_ID";
 	public static final String FIND_TASKS_BY_PERIOD = "Tasks.FIND_TASKS_BY_PERIOD";
+	public static final String LOAD_ALL_TASKS = "Tasks.LOAD_ALL_TASKS";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

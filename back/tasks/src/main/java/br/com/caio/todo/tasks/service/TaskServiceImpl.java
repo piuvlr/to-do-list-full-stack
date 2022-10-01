@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import br.com.caio.todo.tasks.bo.TaskBO;
@@ -24,7 +23,13 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Autowired
 	UserBO userBO;
-
+	
+	@Override
+	public List<Tasks> getAllTasks() {
+		List<Tasks> result = taskBO.loadAllTasks();
+		return result;
+	}
+	
 	@Override
 	public List<TasksVO> loadTasks() {
 		List<Tasks> result = taskBO.loadTasks(TaskUtils.getUserID());
@@ -35,6 +40,8 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public TasksVO createTasks(TasksVO tasksVO) {
 		User user = userBO.findUserById(TaskUtils.getUserID());
+		
+		tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
 		
 		Tasks tasks = TasksVO.parseToEntity(tasksVO, user);
 		taskBO.createTask(tasks);

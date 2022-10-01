@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.vo.TasksVO;
 
 @Service
 public interface TaskService {
+	
+	public List<Tasks> getAllTasks();
 	
 	public List<TasksVO> loadTasks();
 

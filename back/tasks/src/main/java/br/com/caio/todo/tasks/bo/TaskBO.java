@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Repository;
 
 import br.com.caio.todo.tasks.model.Tasks;
@@ -16,6 +15,12 @@ public class TaskBO {
 	
 	@Autowired
 	private TasksRepository tasksRepository;
+	
+	public List<Tasks> loadAllTasks() {
+		List<Tasks> result = tasksRepository.allTasks();
+		
+		return result;
+	}
 	
 	public List<Tasks> loadTasks(Integer userId) {
 		List<Tasks> result = tasksRepository.loadTasks(userId);

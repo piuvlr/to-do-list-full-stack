@@ -17,7 +17,7 @@
 
         <mat-form-field class="w-100 mt-2" appearance="outline">
           <mat-label>Data de vencimento</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input [formControlName]="'deadlineDate'" matInput [matDatepicker]="picker">
           <mat-hint>Digite a data de vencimento</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
