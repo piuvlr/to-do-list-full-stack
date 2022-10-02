@@ -27,7 +27,7 @@
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>
-      <button (click)="createTask()" mat-button >CRIAR TASK</button>
+      <button [disabled]="newTaskForm.invalid" (click)="createTask()" mat-button >CRIAR TASK</button>
       <button (click)="cancel()" mat-button >CANCELAR</button>
     </mat-card-actions>
   </mat-card>

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class TaskController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<TasksVO> createTask(@RequestBody TasksVO tasksVO) {
+	public ResponseEntity<TasksVO> createTask(@RequestBody @Valid TasksVO tasksVO) {
 		
 		TasksVO result = taskService.createTasks(tasksVO);
 		return new ResponseEntity<TasksVO>(result, HttpStatus.CREATED);
