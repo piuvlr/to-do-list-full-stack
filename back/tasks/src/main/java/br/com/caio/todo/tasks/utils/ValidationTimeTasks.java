@@ -23,7 +23,7 @@ public class ValidationTimeTasks {
 	@Autowired
 	private TaskService taskService;
 	
-	    @Scheduled(cron = "59 59 23 * * *") 
+	    @Scheduled(cron = "00 00 00 * * *") 
 	    @Transactional
 	    public void verificationTasks() { 
 	        System.out.println("Executrando tarefa" + new Date());
