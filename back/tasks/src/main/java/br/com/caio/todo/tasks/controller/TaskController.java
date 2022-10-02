@@ -55,6 +55,7 @@ public class TaskController {
 			@RequestParam(value = "end", required = true) String dateEnd) {
 		
 		Date iniDate = new Date();
+		
 		Date endDate = new Date();
 		
 		try {
