@@ -60,7 +60,6 @@ public class TasksVO {
 		tasks.setDescription(tasksVO.getDescription());
 		tasks.setDeadlineDate(tasksVO.getDeadlineDate());
 		tasks.setUser(user);
-		tasks.setUser(user);
 		
 		return tasks;
 	}
