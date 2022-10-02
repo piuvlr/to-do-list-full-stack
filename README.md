@@ -12,8 +12,3 @@ Projeto -- lista de tarefas
 * Java
 * Spring
 * Maeven
-
-
-## Como configurar o ambiente
-
-* Criehju
