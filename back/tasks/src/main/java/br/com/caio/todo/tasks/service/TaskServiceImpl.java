@@ -41,7 +41,9 @@ public class TaskServiceImpl implements TaskService {
 	public TasksVO createTasks(TasksVO tasksVO) {
 		User user = userBO.findUserById(TaskUtils.getUserID());
 		
-		tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
+		if (tasksVO.getDeadlineDate() != null) {
+			tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
+		}
 		
 		Tasks tasks = TasksVO.parseToEntity(tasksVO, user);
 		taskBO.createTask(tasks);

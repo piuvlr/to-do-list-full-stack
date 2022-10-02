@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Required;
+
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
@@ -11,7 +16,11 @@ import br.com.caio.todo.tasks.status.StatusTaskEnum;
 public class TasksVO {
 
 	private Integer id;
+	
+	@NotNull
 	private String nameTask;
+	
+	@NotNull
 	private String description;
 	private StatusTaskEnum statusTask;
 	private Date creationDate;
