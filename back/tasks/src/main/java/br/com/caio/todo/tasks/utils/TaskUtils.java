@@ -9,7 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import br.com.caio.todo.tasks.model.User;
 
 public class TaskUtils {
-
+	
+	/**
+	 * Função que busca o id do usuario que está autenticado
+	 * na sessão
+	 * @return Long userID
+	 */
 	public static Integer getUserID() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) authentication.getPrincipal();
@@ -17,6 +22,12 @@ public class TaskUtils {
 		return user.getId();
 	}
 	
+	/**
+	 * Função que recebe uma data qualquer e altera a data dela para
+	 * os últimos segundos/minutos/hora do dia
+	 * @param date
+	 * @return Date dd/MM/yyyy 23h 59min 59s
+	 */
 	public static Date getEndTimeByDate(Date date) {
 		Calendar result = Calendar.getInstance();
 		result.setTime(date);
@@ -28,6 +39,12 @@ public class TaskUtils {
 		return result.getTime();
 	}
 	
+	/**
+	 * Função que recebe uma data qualquer e altera a data dela para
+	 * os primeiros segundos/minutos/hora do dia
+	 * @param date
+	 * @return Date dd/MM/yyyy 00h 00min 00s
+	 */
 	public static Date getInitialTimeByDate(Date date) {
 		Calendar result = Calendar.getInstance();
 		result.setTime(date);
