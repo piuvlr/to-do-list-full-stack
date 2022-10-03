@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caio.todo.tasks.service.TaskService;
+import br.com.caio.todo.tasks.utils.TaskUtils;
 import br.com.caio.todo.tasks.vo.TasksVO;
 
 @RestController
@@ -65,7 +66,7 @@ public class TaskController {
 			return ResponseEntity.badRequest().build();
 		}
 		
-		List<TasksVO> result = taskService.loadTasksPeriod(iniDate, endDate);
+		List<TasksVO> result = taskService.loadTasksPeriod(TaskUtils.getInitialTimeByDate(iniDate), TaskUtils.getEndTimeByDate(endDate));
 		return new ResponseEntity<List<TasksVO>>(result, HttpStatus.OK);
 	}
 	
