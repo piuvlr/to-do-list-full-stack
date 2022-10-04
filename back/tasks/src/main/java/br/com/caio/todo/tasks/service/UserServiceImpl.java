@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.caio.todo.tasks.bo.UserBO;
 import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.vo.UserVO;
+import br.com.caio.todo.tasks.utils.ParseUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,6 +28,6 @@ public class UserServiceImpl implements UserService {
 		User user = userRequestVO.parseToEntity(userRequestVO);
 		user = userBO.registerUser(user);
 		
-		return UserVO.parse(user);
+		return ParseUtils.parse(user);
 	}
 }

@@ -17,12 +17,6 @@ public class UserVO {
 		this.userName = userName;
 		this.creationDate = creationDate;
 	}
-	
-	public static UserVO parse(User user) {
-		UserVO userVO = new UserVO(user.getId(), user.getUsername(), user.getCreationDate());
-		
-		return userVO;
-	}
 
 	public Integer getId() {
 		return id;
@@ -51,13 +45,12 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public User parseToEntity(UserVO userVO) {
+	/*public User parseToEntity(UserVO userVO) {
 		User user = new User();
 		user.setUserName(userVO.getUserName());
 		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));
 		
 		return user;
-	}
+	}*/
 
 }

@@ -14,6 +14,7 @@ import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
 import br.com.caio.todo.tasks.utils.TaskUtils;
 import br.com.caio.todo.tasks.vo.TasksVO;
+import br.com.caio.todo.tasks.utils.ParseUtils;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -34,7 +35,7 @@ public class TaskServiceImpl implements TaskService {
 	public List<TasksVO> loadTasks() {
 		List<Tasks> result = taskBO.loadTasks(TaskUtils.getUserID());
 		
-		return TasksVO.parse(result);
+		return ParseUtils.parse(result);
 	}
 
 	@Override
@@ -45,10 +46,10 @@ public class TaskServiceImpl implements TaskService {
 			tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
 		}
 		
-		Tasks tasks = TasksVO.parseToEntity(tasksVO, user);
+		Tasks tasks = ParseUtils.parseToEntity(tasksVO, user);
 		taskBO.createTask(tasks);
 		
-		List<TasksVO> tasksCreateVO = TasksVO.parse(Arrays.asList(tasks));
+		List<TasksVO> tasksCreateVO = ParseUtils.parse(Arrays.asList(tasks));
 		
 		return tasksCreateVO.get(0);
 	}
@@ -58,7 +59,7 @@ public class TaskServiceImpl implements TaskService {
 		Integer userId = TaskUtils.getUserID();
 		
 		List<Tasks> result = taskBO.loadTasksPeriod(iniDate, endDate, userId);
-		return TasksVO.parse(result);
+		return ParseUtils.parse(result);
 	}
 
 	@Override
