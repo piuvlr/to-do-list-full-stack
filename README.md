@@ -7,6 +7,8 @@ Projeto -- lista de tarefas
 #### Tecnologias - Front-end
 * Angular
 * Typescript
+* Bootstrap
+* Tailwind
 
 #### Tecnologias - Back-end
 * Java
