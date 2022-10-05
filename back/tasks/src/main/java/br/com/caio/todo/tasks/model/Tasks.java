@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
+import br.com.caio.todo.tasks.model.User;
 
 @Entity
 @Table(name = "TASKS")
@@ -119,6 +120,9 @@ public class Tasks {
 
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
+	}
+	public String getUserName() {
+		return User.userName;
 	}
 
 }

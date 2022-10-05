@@ -49,9 +49,9 @@ public class TaskServiceImpl implements TaskService {
 		Tasks tasks = ParseUtils.parseToEntity(tasksVO, user);
 		taskBO.createTask(tasks);
 		
-		List<TasksVO> tasksCreateVO = ParseUtils.parse(Arrays.asList(tasks));
+		TasksVO tasksCreateVO = ParseUtils.parseTask(tasks);
 		
-		return tasksCreateVO.get(0);
+		return tasksCreateVO;
 	}
 
 	@Override

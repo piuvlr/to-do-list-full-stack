@@ -103,5 +103,6 @@ public class TasksVO {
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
 	}
+	
 
 }

@@ -11,6 +11,13 @@ import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.model.Tasks;
 
 public class ParseUtils {
+	// id - nametask - description - statustask - creationdate - completedDate - deadlineDate - userName
+	
+	public static TasksVO parseTask(Tasks task) {
+		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(), task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), task.getUserName());
+		
+		return taskVO;
+	}
 	
 	
 	public static UserVO parse(User user) {
