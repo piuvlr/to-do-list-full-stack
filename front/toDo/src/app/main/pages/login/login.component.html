@@ -1,16 +1,16 @@
-<div class="container d-flex flex-row justify-content-center mt-3">
+<div class="container flex flex-row justify-center mt-5">
   <mat-card class="p-3" style="width: 350px;">
     <mat-card-subtitle>Seja bem vindo ao ToDo-List</mat-card-subtitle>
     <mat-card-title class="mb-3">Login</mat-card-title>
     <mat-card-content>
-      <form class="d-flex flex-column" [formGroup]="formLogin">
-        <mat-form-field class="w-100" appearance="outline">
+      <form class="flex flex-col" [formGroup]="formLogin">
+        <mat-form-field class="w-full" appearance="outline">
           <mat-label>Nome de usuario</mat-label>
           <input [formControlName]="'nameUser'" matInput placeholder="user name">
           <mat-hint>Digite aqui o nome do usuario</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="w-100 mt-2" appearance="outline">
+        <mat-form-field class="w-full mt-2" appearance="outline">
           <mat-label>Senha</mat-label>
           <input [formControlName]="'password'" type="password" matInput placeholder="password">
           <mat-hint>Digite sua senha</mat-hint>
