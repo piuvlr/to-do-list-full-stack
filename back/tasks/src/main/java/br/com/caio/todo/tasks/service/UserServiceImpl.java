@@ -1,6 +1,7 @@
 package br.com.caio.todo.tasks.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.caio.todo.tasks.bo.UserBO;
@@ -22,12 +23,13 @@ public class UserServiceImpl implements UserService {
 		
 		return userVO;
 	}
-
+	
 	@Override
 	public UserVO registerUser(UserVO userRequestVO) {
-		User user = userRequestVO.parseToEntity(userRequestVO);
+		User user = ParseUtils.parseToEntity(userRequestVO);		
 		user = userBO.registerUser(user);
 		
 		return ParseUtils.parse(user);
 	}
+	
 }

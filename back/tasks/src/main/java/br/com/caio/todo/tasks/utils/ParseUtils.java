@@ -11,13 +11,21 @@ import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.model.Tasks;
 
 public class ParseUtils {
+	
+	
 	public static UserVO parse(User user) {
 		UserVO userVO = new UserVO(user.getId(), user.getUsername(), user.getCreationDate());
 		
 		return userVO;
 	}
 	
-	public User parseToEntity(UserVO userVO) {
+	/**
+	 * Transforma o User em uma entidade.
+	 * 
+	 * @param userVO Recebe como parametro o Objeto userVO
+	 * @return retorna o proprio user , porem, agora e uma entidade
+	 */
+	public static User parseToEntity(UserVO userVO) {
 		User user = new User();
 		user.setUserName(userVO.getUserName());
 		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));
@@ -37,6 +45,14 @@ public class ParseUtils {
 		return result;
 	}
 	
+	/**
+	 * 
+	 * Transforma a Tarefa em uma entidade.
+	 * 
+	 * @param tasksVO  Recebe como parametro o Objeto  tasksVO
+	 * @param user	Recebe como parametro o Objeto user
+	 * @return retorna a propria tarefa , porem, agora e uma entidade
+	 */
 	public static Tasks parseToEntity(TasksVO tasksVO, User user) {
 		Tasks tasks = new Tasks();
 		tasks.setNameTask(tasksVO.getNameTask());

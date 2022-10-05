@@ -45,12 +45,5 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	/*public User parseToEntity(UserVO userVO) {
-		User user = new User();
-		user.setUserName(userVO.getUserName());
-		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));
-		
-		return user;
-	}*/
 
 }
