@@ -37,7 +37,7 @@ public class User implements UserDetails  {
 
 	@Basic
 	@Column(name = "USER_NAME", nullable = false, length = 30)
-	public static String userName;
+	private  String userName;
 	
 	@Basic
 	@Column(name = "USER_PASSWORD", nullable = false)
