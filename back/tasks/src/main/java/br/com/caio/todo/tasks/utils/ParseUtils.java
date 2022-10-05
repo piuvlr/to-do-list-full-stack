@@ -10,16 +10,37 @@ import br.com.caio.todo.tasks.vo.UserVO;
 import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.model.Tasks;
 
+
+/**
+ * 
+ * esta contida nesta classe todas as funcoes criadas para realizar um parse das tasks e users  
+ * 
+ * @author NICOLINO
+ *
+ */
 public class ParseUtils {
-	// id - nametask - description - statustask - creationdate - completedDate - deadlineDate - userName
 	
+	
+	/**
+	 * 
+	 * Realiza o parse de uma task
+	 * 
+	 * @param task representa a task, que é um objeto Tasks
+	 * @return retorna um taskVO com as informacoes obtidas de task
+	 */
 	public static TasksVO parseTask(Tasks task) {
 		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(), task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), task.getUserName());
 		
 		return taskVO;
 	}
 	
-	
+	/**
+	 * 
+	 * Realiza o parse de um user 
+	 * 
+	 * @param user representa o user, que é um objeto User
+	 * @return retorna um userVO com as informacoes obtidas de user 
+	 */
 	public static UserVO parse(User user) {
 		UserVO userVO = new UserVO(user.getId(), user.getUsername(), user.getCreationDate());
 		
@@ -40,6 +61,14 @@ public class ParseUtils {
 		return user;
 	}
 	
+	
+	/**
+	 * 
+	 * realiza o parse de uma task, transformando numa array
+	 * 
+	 * @param taskList representa uma lista de tasks
+	 * @return retorna as tasks que foram enviadas para a array
+	 */
 	public static List<TasksVO> parse(List<Tasks> taskList) {
 		List<TasksVO> result = new ArrayList<>();
 		for (Tasks task : taskList) {
