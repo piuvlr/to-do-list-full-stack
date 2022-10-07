@@ -2,8 +2,6 @@ package br.com.caio.todo.tasks.utils;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import java.util.ArrayList;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,9 +19,6 @@ import br.com.caio.todo.tasks.model.Tasks;
  * @author NICOLINO
  */
 public class ParseUtils {
-	
-	@NotNull
-	private String userName;
 	
 	/**
 	 * 
