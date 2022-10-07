@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.caio.todo.tasks.bo.UserBO;
 import br.com.caio.todo.tasks.model.User;
+import br.com.caio.todo.tasks.utils.ParseUtils;
 import br.com.caio.todo.tasks.vo.UserVO;
 
 @Service
@@ -20,13 +21,12 @@ public class UserServiceImpl implements UserService {
 		UserVO userVO = new UserVO(user.getId(), user.getUserName(), user.getCreationDate());
 		
 		return userVO;
-	}
-
+	}	
 	@Override
 	public UserVO registerUser(UserVO userRequestVO) {
-		User user = userRequestVO.parseToEntity(userRequestVO);
+		User user = ParseUtils.parseToEntity(userRequestVO);		
 		user = userBO.registerUser(user);
 		
-		return UserVO.parse(user);
+		return ParseUtils.parseUser(user);
 	}
 }

@@ -1,16 +1,9 @@
 package br.com.caio.todo.tasks.vo;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Required;
-
-import br.com.caio.todo.tasks.model.Tasks;
-import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
 public class TasksVO {
@@ -28,8 +21,6 @@ public class TasksVO {
 	private Date deadlineDate;
 	private String userName;
 	
-	
-	
 	public TasksVO(Integer id, String nameTask, String description, StatusTaskEnum statusTask, Date creationDate,
 			Date completedDate, Date deadlineDate, String userName) {
 		this.id = id;
@@ -42,34 +33,12 @@ public class TasksVO {
 		this.userName = userName;
 	}
 
-	public static List<TasksVO> parse(List<Tasks> taskList) {
-		List<TasksVO> result = new ArrayList<>();
-		for (Tasks task : taskList) {
-			TasksVO tasksVO = new TasksVO(task.getId(), 
-					task.getNameTask(), task.getDescription(), task.getStatusTask(), task.getCreationDate(), task.getCompletedDate(), 
-					task.getDeadlineDate(), task.getUser().getUserName());
-			result.add(tasksVO);
-		}
-		
-		return result;
-	}
-	
-	public static Tasks parseToEntity(TasksVO tasksVO, User user) {
-		Tasks tasks = new Tasks();
-		tasks.setNameTask(tasksVO.getNameTask());
-		tasks.setDescription(tasksVO.getDescription());
-		tasks.setDeadlineDate(tasksVO.getDeadlineDate());
-		tasks.setUser(user);
-		
-		return tasks;
-	}
-
 	public Integer getId() {
 		return id;
 	}
 
 	public String getUserName() {
-		return userName;
+		return this.userName;
 	}
 
 	public void setUserName(String userName) {
@@ -123,5 +92,5 @@ public class TasksVO {
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
 	}
-
+	
 }

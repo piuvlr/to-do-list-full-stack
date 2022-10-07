@@ -1,6 +1,5 @@
 package br.com.caio.todo.tasks.service;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import br.com.caio.todo.tasks.bo.UserBO;
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
+import br.com.caio.todo.tasks.utils.ParseUtils;
 import br.com.caio.todo.tasks.utils.TaskUtils;
 import br.com.caio.todo.tasks.vo.TasksVO;
 
@@ -34,7 +34,7 @@ public class TaskServiceImpl implements TaskService {
 	public List<TasksVO> loadTasks() {
 		List<Tasks> result = taskBO.loadTasks(TaskUtils.getUserID());
 		
-		return TasksVO.parse(result);
+		return ParseUtils.parse(result);
 	}
 
 	@Override
@@ -45,12 +45,12 @@ public class TaskServiceImpl implements TaskService {
 			tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
 		}
 		
-		Tasks tasks = TasksVO.parseToEntity(tasksVO, user);
+		Tasks tasks = ParseUtils.parseToEntity(tasksVO, user);
 		taskBO.createTask(tasks);
 		
-		List<TasksVO> tasksCreateVO = TasksVO.parse(Arrays.asList(tasks));
+		TasksVO tasksCreateVO = ParseUtils.parseTask(tasks);
 		
-		return tasksCreateVO.get(0);
+		return tasksCreateVO;
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class TaskServiceImpl implements TaskService {
 		Integer userId = TaskUtils.getUserID();
 		
 		List<Tasks> result = taskBO.loadTasksPeriod(iniDate, endDate, userId);
-		return TasksVO.parse(result);
+		return ParseUtils.parse(result);
 	}
 
 	@Override

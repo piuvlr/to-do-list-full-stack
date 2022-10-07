@@ -2,6 +2,7 @@ package br.com.caio.todo.tasks.model;
 
 import java.util.Date;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -120,5 +121,4 @@ public class Tasks {
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
 	}
-
 }
