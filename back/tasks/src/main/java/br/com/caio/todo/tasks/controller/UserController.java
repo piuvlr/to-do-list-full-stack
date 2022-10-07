@@ -7,7 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,14 +45,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<TokenVO> register(@RequestBody UserVO userRequestVO) {
+	public ResponseEntity<UserVO> register(@RequestBody UserVO userRequestVO) {
 		UserVO result = userService.registerUser(userRequestVO);
 		
-		if (result != null) {
-			return this.login(userRequestVO);
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
+		return new ResponseEntity<UserVO>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)

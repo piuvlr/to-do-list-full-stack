@@ -34,12 +34,21 @@ export class RegisterComponent implements OnInit {
 
     this.__authenticationService.postRegister(register.nameUser, register.password).subscribe({
       next: (success) => {
-        this.__authenticationService.registerUser(register.nameUser, success);
-        this._router.navigateByUrl('/tasks')
+        this.postLogin(register);
       },
       error: (e) => this.openSnackBarError()
     })
 
+  }
+
+  postLogin(login: {nameUser: string, password: string}) {
+    this.__authenticationService.postLogin(login.nameUser, login.password).subscribe({
+      next: (success) => {
+        this.__authenticationService.registerUser(login.nameUser, success)
+        this._router.navigateByUrl('/tasks')
+      },
+      error: e => console.log(e)
+    })
   }
 
   openSnackBarError(): void {
