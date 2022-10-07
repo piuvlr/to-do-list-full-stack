@@ -28,7 +28,8 @@ public class ParseUtils {
 	 * @return retorna um taskVO com as informacoes obtidas de task
 	 */
 	public static TasksVO parseTask(Tasks task) {
-		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(), task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), TasksVO.getUserName());
+		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(),
+				task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), TasksVO.getUserName());
 		
 		return taskVO;
 	}
