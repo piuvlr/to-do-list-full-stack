@@ -54,7 +54,7 @@ public class TaskController {
 			@RequestParam(value = "ini", required = true) String dateInit,
 			@RequestParam(value = "end", required = true) String dateEnd) {
 		
-		Date iniDate = new Date();		
+		Date iniDate = new Date();
 		Date endDate = new Date();
 		
 		try {

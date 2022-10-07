@@ -11,17 +11,9 @@ import br.com.caio.todo.tasks.vo.UserVO;
 import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.model.Tasks;
 
-
-/**
- * 
- * esta contida nesta classe todas as funcoes criadas para realizar um parse das tasks e users  
- * 
- * @author NICOLINO
- */
 public class ParseUtils {
 	
 	/**
-	 * 
 	 * Realiza o parse de uma task
 	 * 
 	 * @param task representa a task, que é um objeto Tasks
@@ -29,19 +21,18 @@ public class ParseUtils {
 	 */
 	public static TasksVO parseTask(Tasks task) {
 		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(),
-				task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), TasksVO.getUserName());
+				task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), task.getUser().getUsername());
 		
 		return taskVO;
 	}
 	
 	/**
-	 * 
 	 * Realiza o parse de um user 
 	 * 
 	 * @param user representa o user, que é um objeto User
 	 * @return retorna um userVO com as informacoes obtidas de user 
 	 */
-	public static UserVO parse(User user) {
+	public static UserVO parseUser(User user) {
 		UserVO userVO = new UserVO(user.getId(), user.getUsername(), user.getCreationDate());
 		
 		return userVO;
@@ -62,7 +53,6 @@ public class ParseUtils {
 	
 	
 	/**
-	 * 
 	 * realiza o parse de uma task, transformando numa array
 	 * 
 	 * @param taskList representa uma lista de tasks
@@ -81,7 +71,6 @@ public class ParseUtils {
 	}
 	
 	/**
-	 * 
 	 * Transforma a Tarefa em uma entidade.
 	 * 
 	 * @param tasksVO  Recebe como parametro o Objeto  tasksVO

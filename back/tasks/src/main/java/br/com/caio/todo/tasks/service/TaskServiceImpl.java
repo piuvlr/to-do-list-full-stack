@@ -1,6 +1,5 @@
 package br.com.caio.todo.tasks.service;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +11,9 @@ import br.com.caio.todo.tasks.bo.UserBO;
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
+import br.com.caio.todo.tasks.utils.ParseUtils;
 import br.com.caio.todo.tasks.utils.TaskUtils;
 import br.com.caio.todo.tasks.vo.TasksVO;
-import br.com.caio.todo.tasks.utils.ParseUtils;
 
 @Service
 public class TaskServiceImpl implements TaskService {
