@@ -1,16 +1,9 @@
 package br.com.caio.todo.tasks.vo;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Required;
-
-import br.com.caio.todo.tasks.model.Tasks;
-import br.com.caio.todo.tasks.model.User;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
 public class TasksVO {
@@ -26,9 +19,7 @@ public class TasksVO {
 	private Date creationDate;
 	private Date completedDate;
 	private Date deadlineDate;
-	private static String userName;
-	
-	
+	private String userName;
 	
 	public TasksVO(Integer id, String nameTask, String description, StatusTaskEnum statusTask, Date creationDate,
 			Date completedDate, Date deadlineDate, String userName) {
@@ -39,19 +30,19 @@ public class TasksVO {
 		this.creationDate = creationDate;
 		this.completedDate = completedDate;
 		this.deadlineDate = deadlineDate;
-		TasksVO.userName = userName;
+		this.userName = userName;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public static String getUserName() {
-		return userName;
+	public String getUserName() {
+		return this.userName;
 	}
 
 	public void setUserName(String userName) {
-		TasksVO.userName = userName;
+		this.userName = userName;
 	}
 
 	public String getNameTask() {

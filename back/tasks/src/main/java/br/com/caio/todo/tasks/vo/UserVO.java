@@ -2,10 +2,6 @@ package br.com.caio.todo.tasks.vo;
 
 import java.util.Date;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import br.com.caio.todo.tasks.model.User;
-
 public class UserVO {
 	private Integer id;
 	private String userName;
