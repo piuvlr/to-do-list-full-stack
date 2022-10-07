@@ -1,6 +1,9 @@
 package br.com.caio.todo.tasks.utils;
 
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,10 +19,11 @@ import br.com.caio.todo.tasks.model.Tasks;
  * esta contida nesta classe todas as funcoes criadas para realizar um parse das tasks e users  
  * 
  * @author NICOLINO
- *
  */
 public class ParseUtils {
 	
+	@NotNull
+	private String userName;
 	
 	/**
 	 * 
@@ -29,7 +33,7 @@ public class ParseUtils {
 	 * @return retorna um taskVO com as informacoes obtidas de task
 	 */
 	public static TasksVO parseTask(Tasks task) {
-		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(), task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), task.getUserName());
+		TasksVO taskVO = new TasksVO(task.getId(), task.getNameTask(), task.getDescription(), task.getStatusTask(), task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), TasksVO.getUserName());
 		
 		return taskVO;
 	}
@@ -56,8 +60,7 @@ public class ParseUtils {
 	public static User parseToEntity(UserVO userVO) {
 		User user = new User();
 		user.setUserName(userVO.getUserName());
-		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));
-		
+		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));		
 		return user;
 	}
 	

@@ -22,8 +22,7 @@ public class UserServiceImpl implements UserService {
 		UserVO userVO = new UserVO(user.getId(), user.getUserName(), user.getCreationDate());
 		
 		return userVO;
-	}
-	
+	}	
 	@Override
 	public UserVO registerUser(UserVO userRequestVO) {
 		User user = ParseUtils.parseToEntity(userRequestVO);		
@@ -31,5 +30,4 @@ public class UserServiceImpl implements UserService {
 		
 		return ParseUtils.parse(user);
 	}
-	
 }

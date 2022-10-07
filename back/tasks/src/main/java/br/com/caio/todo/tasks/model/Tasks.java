@@ -121,8 +121,4 @@ public class Tasks {
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
 	}
-	public String getUserName() {
-		return User.userName;
-	}
-
 }

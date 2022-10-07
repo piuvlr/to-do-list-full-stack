@@ -26,7 +26,7 @@ public class TasksVO {
 	private Date creationDate;
 	private Date completedDate;
 	private Date deadlineDate;
-	private String userName;
+	private static String userName;
 	
 	
 	
@@ -39,21 +39,19 @@ public class TasksVO {
 		this.creationDate = creationDate;
 		this.completedDate = completedDate;
 		this.deadlineDate = deadlineDate;
-		this.userName = userName;
+		TasksVO.userName = userName;
 	}
-
-
 
 	public Integer getId() {
 		return id;
 	}
 
-	public String getUserName() {
+	public static String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		TasksVO.userName = userName;
 	}
 
 	public String getNameTask() {
@@ -104,5 +102,4 @@ public class TasksVO {
 		this.deadlineDate = deadlineDate;
 	}
 	
-
 }
