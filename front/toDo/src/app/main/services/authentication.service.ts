@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthenticationService {
       password: password
     }
 
-    return this._httpClient.post<any>(`http://localhost:8080/user/login`, body);
+    return this._httpClient.post<any>(`${environment.SERVER}/user/login`, body);
   }
 
   registerUser(userName: string, token: any): void {
@@ -30,11 +31,11 @@ export class AuthenticationService {
       password: password
     }
 
-    return this._httpClient.post<any>('http://localhost:8080/user/register', body)
+    return this._httpClient.post<any>(`${environment.SERVER}/user/register`, body)
   }
 
   logout(): Observable<any> {
-    return this._httpClient.post<any>('http://localhost:8080/user/logout', null)
+    return this._httpClient.post<any>(`${environment.SERVER}/user/logout`, null)
   }
 
 }
