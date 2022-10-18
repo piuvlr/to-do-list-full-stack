@@ -40,9 +40,16 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public TasksVO createTasks(TasksVO tasksVO) {
 		User user = userBO.findUserById(TaskUtils.getUserID());
+		Date today = new Date();
+		//Tasks task = new Tasks();
 		
 		if (tasksVO.getDeadlineDate() != null) {
 			tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
+		}
+		if (today.after(tasksVO.getDeadlineDate())) {
+			tasksVO.setStatusTask(StatusTaskEnum.DEADLINE);
+		} else {
+			tasksVO.setStatusTask(StatusTaskEnum.PROGRESS);
 		}
 		
 		Tasks tasks = ParseUtils.parseToEntity(tasksVO, user);

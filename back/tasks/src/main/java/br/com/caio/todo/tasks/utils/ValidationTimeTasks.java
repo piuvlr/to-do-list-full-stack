@@ -23,13 +23,16 @@ public class ValidationTimeTasks {
 	@Autowired
 	private TaskService taskService;
 	
-	    @Scheduled(cron = "00 00 00 * * *") 
+	int numDate;
+
+	  @Scheduled(cron = "00 00 00 * * *") 
 	    @Transactional
 	    public void verificationTasks() { 
 	        System.out.println("Executrando tarefa" + new Date());
 	        
 	        List<Tasks> result = this.taskService.getAllTasks();
 	        Date today = new Date();
+	        
 	        
 	        for (Tasks tasks : result) {
 	        	if (tasks.getDeadlineDate() != null) {
@@ -39,5 +42,5 @@ public class ValidationTimeTasks {
 	        	}
 	        }
 	    }
-
+	    
 }
