@@ -32,8 +32,7 @@ public class ValidationTimeTasks {
 	        
 	        List<Tasks> result = this.taskService.getAllTasks();
 	        Date today = new Date();
-	        
-	        
+	        	        
 	        for (Tasks tasks : result) {
 	        	if (tasks.getDeadlineDate() != null) {
 	        		if (today.after(tasks.getDeadlineDate())) {
@@ -41,6 +40,5 @@ public class ValidationTimeTasks {
 	        		}
 	        	}
 	        }
-	    }
-	    
+	    }	    
 }

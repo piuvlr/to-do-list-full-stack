@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
-
 @Entity
 @Table(name = "TASKS")
 @NamedQueries({
