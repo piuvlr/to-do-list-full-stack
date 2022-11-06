@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.com.caio.todo.tasks.status.EmailPermissionsUserEnum;
+
 @Entity
 @Table(name = "USER_TASK")
 @NamedQueries({ 
@@ -51,7 +53,15 @@ public class User implements UserDetails  {
 	@Basic
 	@Column(name = "CREATION_DATE")
 	private Date creationDate = new Date();
-
+	
+	@Basic
+	@Column(name = "PERMISSION_EMAILS")
+	private EmailPermissionsUserEnum permissionEMails;
+	
+	@Basic
+	@Column(name = "EMAIL_USER")
+	private String emailUser;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -78,6 +88,22 @@ public class User implements UserDetails  {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public EmailPermissionsUserEnum getPermissionEMails() {
+		return permissionEMails;
+	}
+
+	public void setPermissionEMails(EmailPermissionsUserEnum permissionEMails) {
+		this.permissionEMails = permissionEMails;
+	}
+
+	public String getEmailUser() {
+		return emailUser;
+	}
+
+	public void setEmailUser(String emailUser) {
+		this.emailUser = emailUser;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package br.com.caio.todo.tasks.utils;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,21 +24,33 @@ public class ValidationTimeTasks {
 	@Autowired
 	private TaskService taskService;
 	
-	    @Scheduled(cron = "00 00 00 * * *") 
+	@Autowired
+	private SendEmails sendEmails;
+	
+	    @Scheduled(cron = "00 00 00 * * *")
 	    @Transactional
 	    public void verificationTasks() { 
-	        System.out.println("Executrando tarefa" + new Date());
+	        System.out.println("Executando tarefa => " + new Date());
 	        
-	        List<Tasks> result = this.taskService.getAllTasks();
+	        Calendar calendar = Calendar.getInstance();
+	        calendar.add(Calendar.DAY_OF_MONTH, -1);
+	        
+	        Date iniDate = TaskUtils.getInitialTimeByDate(calendar.getTime());
+	        
+	        calendar.add(Calendar.DAY_OF_MONTH, 2);
+	        Date endDate = TaskUtils.getEndTimeByDate(calendar.getTime());
+	        
+	        List<Tasks> result = this.taskService.loadTasksPeriodAndStatus(iniDate, endDate, StatusTaskEnum.PROGRESS);
 	        Date today = new Date();
 	        
 	        for (Tasks tasks : result) {
 	        	if (tasks.getDeadlineDate() != null) {
 	        		if (today.after(tasks.getDeadlineDate())) {
 	        			tasks.setStatusTask(StatusTaskEnum.DEADLINE);
+	        		} else {
+	        			this.sendEmails.sendEmailDeadlineTasks(tasks.getUser().getEmailUser(), ParseUtils.parseTask(tasks));
 	        		}
 	        	}
 	        }
 	    }
-
 }
