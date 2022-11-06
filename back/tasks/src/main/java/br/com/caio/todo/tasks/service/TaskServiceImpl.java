@@ -79,4 +79,11 @@ public class TaskServiceImpl implements TaskService {
 		
 		return tasksVO;
 	}
+
+	@Override
+	public List<Tasks> loadTasksPeriodAndStatus(Date iniDate, Date endDate, StatusTaskEnum statusTaskEnum) {
+		
+		List<Tasks> result = taskBO.loadTasksPeriodAndStatus(iniDate, endDate, statusTaskEnum);
+		return result;
+	}
 }
