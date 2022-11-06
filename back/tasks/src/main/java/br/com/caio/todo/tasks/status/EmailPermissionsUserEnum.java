@@ -1,6 +1,6 @@
 package br.com.caio.todo.tasks.status;
 
-public enum EmailPermissionsUser {
+public enum EmailPermissionsUserEnum {
 	DENIED,
 	APPROVED
 

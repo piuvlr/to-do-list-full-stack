@@ -21,7 +21,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.caio.todo.tasks.status.EmailPermissionsUser;
+import br.com.caio.todo.tasks.status.EmailPermissionsUserEnum;
 
 @Entity
 @Table(name = "USER_TASK")
@@ -56,7 +56,7 @@ public class User implements UserDetails  {
 	
 	@Basic
 	@Column(name = "PERMISSION_EMAILS")
-	private EmailPermissionsUser permissionEMails;
+	private EmailPermissionsUserEnum permissionEMails;
 	
 	@Basic
 	@Column(name = "EMAIL_USER")
@@ -90,11 +90,11 @@ public class User implements UserDetails  {
 		this.password = password;
 	}
 	
-	public EmailPermissionsUser getPermissionEMails() {
+	public EmailPermissionsUserEnum getPermissionEMails() {
 		return permissionEMails;
 	}
 
-	public void setPermissionEMails(EmailPermissionsUser permissionEMails) {
+	public void setPermissionEMails(EmailPermissionsUserEnum permissionEMails) {
 		this.permissionEMails = permissionEMails;
 	}
 
