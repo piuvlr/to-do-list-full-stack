@@ -34,8 +34,6 @@ public class SendEmails {
 			}
 		});
 		
-		session.setDebug(true);
-		
 		try {
 			 Message message = new MimeMessage(session);
 			 message.setFrom(new InternetAddress("tasks.para.fazer@gmail.com"));
@@ -50,8 +48,6 @@ public class SendEmails {
 			/**Método para enviar a mensagem criada*/
 		    Transport.send(message);
 		    
-		    System.out.println("Feito!!!");
-			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
