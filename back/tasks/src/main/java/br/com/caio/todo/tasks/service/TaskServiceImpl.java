@@ -44,9 +44,12 @@ public class TaskServiceImpl implements TaskService {
 		
 		if (tasksVO.getDeadlineDate() != null) {
 			tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
-		}
-		if (today.after(tasksVO.getDeadlineDate())) {
-			tasksVO.setStatusTask(StatusTaskEnum.DEADLINE);
+
+			if (today.after(tasksVO.getDeadlineDate())) {
+				tasksVO.setStatusTask(StatusTaskEnum.DEADLINE);
+			} else {
+				tasksVO.setStatusTask(StatusTaskEnum.PROGRESS);
+			}
 		} else {
 			tasksVO.setStatusTask(StatusTaskEnum.PROGRESS);
 		}

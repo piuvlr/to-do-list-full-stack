@@ -18,16 +18,14 @@ import br.com.caio.todo.tasks.status.StatusTaskEnum;
 @Entity
 @Table(name = "TASKS")
 @NamedQueries({
-	@NamedQuery(name = Tasks.FIND_TASKS_BY_USER_ID, query = "select t from Tasks t where t.user.id = :userId"),
-	@NamedQuery(name = Tasks.FIND_TASKS_BY_PERIOD, query = "select t from Tasks t "
-			+ "where t.user.id = :userId and t.creationDate between :iniDate and :endDate"),
-	@NamedQuery(name = Tasks.FIND_TASK_BY_ID, query = "select t from Tasks t where t.id = :taskId"),
-	@NamedQuery(name = Tasks.LOAD_ALL_TASKS, query = "select t from Tasks t where t.statusTask = 1"),
-	@NamedQuery(name = Tasks.FIND_TASKS_BY_PERIOD_AND_STATUS, query = "select t from Tasks t "
-			+ "where t.deadlineDate between :iniDate and :endDate and t.statusTask = :statusTaskEnum"),
-})
+		@NamedQuery(name = Tasks.FIND_TASKS_BY_USER_ID, query = "select t from Tasks t where t.user.id = :userId"),
+		@NamedQuery(name = Tasks.FIND_TASKS_BY_PERIOD, query = "select t from Tasks t "
+				+ "where t.user.id = :userId and t.creationDate between :iniDate and :endDate"),
+		@NamedQuery(name = Tasks.FIND_TASK_BY_ID, query = "select t from Tasks t where t.id = :taskId"),
+		@NamedQuery(name = Tasks.LOAD_ALL_TASKS, query = "select t from Tasks t where t.statusTask = 1"),
+		@NamedQuery(name = Tasks.FIND_TASKS_BY_PERIOD_AND_STATUS, query = "select t from Tasks t "
+				+ "where t.deadlineDate between :iniDate and :endDate and t.statusTask = :statusTaskEnum"), })
 public class Tasks {
-
 	public static final String FIND_TASK_BY_ID = "Tasks.FIND_TASK_BY_ID";
 	public static final String FIND_TASKS_BY_USER_ID = "Tasks.FIND_TASKS_BY_USER_ID";
 	public static final String FIND_TASKS_BY_PERIOD = "Tasks.FIND_TASKS_BY_PERIOD";
@@ -49,7 +47,7 @@ public class Tasks {
 	private String description;
 
 	@Column(name = "STATUS_TASK")
-	private StatusTaskEnum statusTask = getStatusTask();
+	private StatusTaskEnum statusTask;
 
 	@Column(name = "CREATION_DATE", nullable = true)
 	private Date creationDate = new Date();
@@ -59,7 +57,7 @@ public class Tasks {
 
 	@Column(name = "DEADLINE_DATE")
 	private Date deadlineDate;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -95,7 +93,7 @@ public class Tasks {
 	public StatusTaskEnum getStatusTask() {
 		return statusTask;
 	}
-	
+
 	public void setStatusTask(StatusTaskEnum statusTask) {
 		this.statusTask = statusTask;
 	}
@@ -123,5 +121,5 @@ public class Tasks {
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
 	}
-	
+
 }

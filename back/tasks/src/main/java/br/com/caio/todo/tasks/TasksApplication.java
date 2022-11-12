@@ -7,9 +7,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableSpringDataWebSupport
-@EnableScheduling 
+@EnableScheduling
 public class TasksApplication {
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(TasksApplication.class, args);
 	}
