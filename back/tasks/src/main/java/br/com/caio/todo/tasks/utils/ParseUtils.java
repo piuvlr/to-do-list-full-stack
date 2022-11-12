@@ -85,6 +85,7 @@ public class ParseUtils {
 		tasks.setNameTask(tasksVO.getNameTask());
 		tasks.setDescription(tasksVO.getDescription());
 		tasks.setDeadlineDate(tasksVO.getDeadlineDate());
+		tasks.setStatusTask(tasksVO.getStatusTask());;
 		tasks.setUser(user);
 		
 		return tasks;
