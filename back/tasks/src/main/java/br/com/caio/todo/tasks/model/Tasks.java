@@ -47,7 +47,7 @@ public class Tasks {
 	private String description;
 
 	@Column(name = "STATUS_TASK")
-	private StatusTaskEnum statusTask = getStatusTask();
+	private StatusTaskEnum statusTask;
 
 	@Column(name = "CREATION_DATE", nullable = true)
 	private Date creationDate = new Date();
