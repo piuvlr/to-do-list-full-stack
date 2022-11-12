@@ -1,16 +1,21 @@
 # Lista de tarefas
-Projeto -- lista de tarefas
+:warning: - O app Flutter está em estágio inicial de desenvolvimento 
 
 
 ## Tecnologias principais
 
 #### Tecnologias - Front-end
-* Angular
+* Angular (Web)
 * Typescript
 * Bootstrap
 * Tailwind
+* Flutter (Mobile)
 
 #### Tecnologias - Back-end
 * Java
 * Spring
 * Maeven
+
+## Como rodar localmente?
+
+

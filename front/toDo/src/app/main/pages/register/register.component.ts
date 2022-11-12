@@ -20,8 +20,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this._formBuilder.group({
-      nameUser: [null],
-      password: [null]
+      userName: [null],
+      password: [null],
+      emailUser: [null],
+      emailPermissionsUserEnum: [false]
     })
   }
 
@@ -32,7 +34,9 @@ export class RegisterComponent implements OnInit {
   postUser() {
     const register = this.formLogin.getRawValue();
 
-    this.__authenticationService.postRegister(register.nameUser, register.password).subscribe({
+    register.emailPermissionsUserEnum = register.emailPermissionsUserEnum ? "APPROVED" : "DENIED";
+
+    this.__authenticationService.postRegister(register).subscribe({
       next: (success) => {
         this.postLogin(register);
       },
@@ -41,10 +45,10 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  postLogin(login: {nameUser: string, password: string}) {
-    this.__authenticationService.postLogin(login.nameUser, login.password).subscribe({
+  postLogin(login: {userName: string, password: string}) {
+    this.__authenticationService.postLogin(login.userName, login.password).subscribe({
       next: (success) => {
-        this.__authenticationService.registerUser(login.nameUser, success)
+        this.__authenticationService.registerUser(login.userName, success)
         this._router.navigateByUrl('/tasks')
       },
       error: e => console.log(e)

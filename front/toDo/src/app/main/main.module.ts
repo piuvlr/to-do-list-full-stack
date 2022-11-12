@@ -18,7 +18,8 @@ import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { UtilsInterceptor } from './utils.interceptor';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -45,7 +46,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UtilsInterceptor, multi: true },

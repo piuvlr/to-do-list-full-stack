@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.caio.todo.tasks.model.Tasks;
+import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Integer> {
@@ -23,5 +24,8 @@ public interface TasksRepository extends JpaRepository<Tasks, Integer> {
 	
 	@Query(name = Tasks.FIND_TASK_BY_ID)
 	public Tasks findTaskById();
+	
+	@Query(name = Tasks.FIND_TASKS_BY_PERIOD_AND_STATUS)
+	public List<Tasks> loadTasksByPeriodAndStatus(Date iniDate, Date endDate, StatusTaskEnum statusTaskEnum); 
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.caio.todo.tasks.model.Tasks;
+import br.com.caio.todo.tasks.status.StatusTaskEnum;
 import br.com.caio.todo.tasks.vo.TasksVO;
 
 @Service
@@ -22,4 +23,6 @@ public interface TaskService {
 	public boolean deleteTask(Integer id);
 
 	public TasksVO concluidTask(Integer id);
+	
+	public List<Tasks> loadTasksPeriodAndStatus(Date iniDate, Date endDate, StatusTaskEnum statusTaskEnum);
 }

@@ -33,7 +33,7 @@ public class ParseUtils {
 	 * @return retorna um userVO com as informacoes obtidas de user 
 	 */
 	public static UserVO parseUser(User user) {
-		UserVO userVO = new UserVO(user.getId(), user.getUsername(), user.getCreationDate());
+		UserVO userVO = new UserVO(user.getId(), user.getUsername(), user.getCreationDate(), user.getEmailUser(), user.getPermissionEMails());
 		
 		return userVO;
 	}
@@ -47,7 +47,10 @@ public class ParseUtils {
 	public static User parseToEntity(UserVO userVO) {
 		User user = new User();
 		user.setUserName(userVO.getUserName());
-		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));		
+		user.setPassword(new BCryptPasswordEncoder().encode(userVO.getPassword()));
+		user.setEmailUser(userVO.getEmailUser());
+		user.setPermissionEMails(userVO.getEmailPermissionsUserEnum());
+		
 		return user;
 	}
 	
