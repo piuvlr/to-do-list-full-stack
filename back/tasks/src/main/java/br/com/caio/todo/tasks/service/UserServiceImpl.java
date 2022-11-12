@@ -18,10 +18,11 @@ public class UserServiceImpl implements UserService {
 	public UserVO findUserByUserName(String userName) {
 		User user = userBO.findUserByUserName(userName);
 		
-		UserVO userVO = new UserVO(user.getId(), user.getUserName(), user.getCreationDate());
+		UserVO userVO = new UserVO(user.getId(), user.getUserName(), user.getCreationDate(), user.getEmailUser(), user.getPermissionEMails());
 		
 		return userVO;
 	}	
+	
 	@Override
 	public UserVO registerUser(UserVO userRequestVO) {
 		User user = ParseUtils.parseToEntity(userRequestVO);		

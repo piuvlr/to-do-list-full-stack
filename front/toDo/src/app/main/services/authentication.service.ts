@@ -25,13 +25,8 @@ export class AuthenticationService {
     localStorage.setItem('typeToken', token.typeRequest);
   }
 
-  postRegister(userName: string, password: string): Observable<any> {
-    const body = {
-      userName: userName,
-      password: password
-    }
-
-    return this._httpClient.post<any>(`${environment.SERVER}/user/register`, body)
+  postRegister(register: any): Observable<any> {
+    return this._httpClient.post<any>(`${environment.SERVER}/user/register`, register)
   }
 
   logout(): Observable<any> {
