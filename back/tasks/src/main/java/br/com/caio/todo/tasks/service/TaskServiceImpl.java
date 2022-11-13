@@ -44,9 +44,12 @@ public class TaskServiceImpl implements TaskService {
 		
 		if (tasksVO.getDeadlineDate() != null) {
 			tasksVO.setDeadlineDate(TaskUtils.getEndTimeByDate(tasksVO.getDeadlineDate()));
-		}
-		if (today.after(tasksVO.getDeadlineDate())) {
-			tasksVO.setStatusTask(StatusTaskEnum.DEADLINE);
+
+			if (today.after(tasksVO.getDeadlineDate())) {
+				tasksVO.setStatusTask(StatusTaskEnum.DEADLINE);
+			} else {
+				tasksVO.setStatusTask(StatusTaskEnum.PROGRESS);
+			}
 		} else {
 			tasksVO.setStatusTask(StatusTaskEnum.PROGRESS);
 		}
@@ -84,5 +87,12 @@ public class TaskServiceImpl implements TaskService {
 				task.getCreationDate(), task.getCompletedDate(), task.getDeadlineDate(), task.getUser().getUsername());
 		
 		return tasksVO;
+	}
+
+	@Override
+	public List<Tasks> loadTasksPeriodAndStatus(Date iniDate, Date endDate, StatusTaskEnum statusTaskEnum) {
+		
+		List<Tasks> result = taskBO.loadTasksPeriodAndStatus(iniDate, endDate, statusTaskEnum);
+		return result;
 	}
 }

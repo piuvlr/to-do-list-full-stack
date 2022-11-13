@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.repository.TasksRepository;
+import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
 @Repository
 public class TaskBO {
@@ -50,5 +51,11 @@ public class TaskBO {
 	public Tasks findTaskById(Integer id) {
 		Optional<Tasks> task = tasksRepository.findById(id);
 		return task.get();
+	}
+
+	public List<Tasks> loadTasksPeriodAndStatus(Date iniDate, Date endDate, StatusTaskEnum statusTaskEnum) {
+		List<Tasks> result = tasksRepository.loadTasksByPeriodAndStatus(iniDate, endDate, statusTaskEnum);
+		
+		return result;
 	}
 }

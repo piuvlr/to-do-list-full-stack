@@ -1,5 +1,6 @@
 package br.com.caio.todo.tasks.utils;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,29 +17,29 @@ import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
 @Component
 public class ValidationTimeTasks {
-	
+
 	@Autowired
 	EntityManager entityManager;
-	
+
 	@Autowired
 	private TaskService taskService;
-	
-	int numDate;
 
-	  @Scheduled(cron = "00 00 00 * * *") 
-	    @Transactional
-	    public void verificationTasks() { 
-	        System.out.println("Executrando tarefa" + new Date());
-	        
-	        List<Tasks> result = this.taskService.getAllTasks();
-	        Date today = new Date();
-	        	        
-	        for (Tasks tasks : result) {
-	        	if (tasks.getDeadlineDate() != null) {
-	        		if (today.after(tasks.getDeadlineDate())) {
-	        			tasks.setStatusTask(StatusTaskEnum.DEADLINE);
-	        		}
-	        	}
-	        }
-	    }	    
+	@Scheduled(cron = "00 00 00 * * *")
+	@Transactional
+	public void verificationTasks() {
+		System.out.println("Executando tarefa => " + new Date());
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_MONTH, -1);
+
+		Date iniDate = TaskUtils.getInitialTimeByDate(calendar.getTime());
+
+		Date endDate = TaskUtils.getEndTimeByDate(calendar.getTime());
+
+		List<Tasks> result = this.taskService.loadTasksPeriodAndStatus(iniDate, endDate, StatusTaskEnum.PROGRESS);
+
+		for (Tasks tasks : result) {
+			tasks.setStatusTask(StatusTaskEnum.DEADLINE);
+		}
+	}
 }
