@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
       next: (success) => {
         this.__authenticationService.registerUser(login.userName, success)
         this._router.navigateByUrl('/tasks')
+        this.__authenticationService.isLogin = true
       },
       error: e => console.log(e)
     })

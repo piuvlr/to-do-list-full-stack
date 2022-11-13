@@ -11,18 +11,22 @@ export class AppComponent {
 
   isLogin: boolean = localStorage.getItem('token') ? true : false;
 
-  constructor(private _router: Router,
-    private _logout: AuthenticationService) {}
+  constructor(private _router: Router, private _authenticationService: AuthenticationService) {
+    this._authenticationService.isLogin$.subscribe(
+      (isLogin) => this.isLogin = isLogin
+    )
+  }
 
   newTask(): void {
     this._router.navigateByUrl('/new-task')
   }
 
   logout(): void {
-    this._logout.logout().subscribe({
+    this._authenticationService.logout().subscribe({
       next: (success) => {
         localStorage.clear();
         this._router.navigateByUrl('/login')
+        this._authenticationService.isLogin = false
       }
     });
   }

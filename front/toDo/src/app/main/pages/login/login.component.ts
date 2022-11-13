@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       next: (success) => {
         this._authenticationService.registerUser(login.nameUser, success);
         this._router.navigateByUrl('/tasks')
+        this._authenticationService.isLogin = true
       },
       error: (e) => this.openSnackBarError()
     })

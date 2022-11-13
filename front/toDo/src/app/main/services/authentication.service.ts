@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 export class AuthenticationService {
 
   constructor(private _httpClient: HttpClient) { }
+
+  private _loginSuccess = new Subject<boolean>();
 
   postLogin(userName: string, password: string): Observable<any> {
     const body = {
@@ -31,6 +33,14 @@ export class AuthenticationService {
 
   logout(): Observable<any> {
     return this._httpClient.post<any>(`${environment.SERVER}/user/logout`, null)
+  }
+
+  set isLogin(isLogin: boolean) {
+    this._loginSuccess.next(isLogin);
+  }
+
+  get isLogin$(): Observable<boolean> {
+    return this._loginSuccess.asObservable();
   }
 
 }
