@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.caio.todo.tasks.model.Tasks;
 import br.com.caio.todo.tasks.service.TaskService;
+import br.com.caio.todo.tasks.status.EmailPermissionsUserEnum;
 import br.com.caio.todo.tasks.status.StatusTaskEnum;
 
 @Component
@@ -26,7 +27,7 @@ public class VerificationTaskSendEmail {
 	@Autowired
 	SendEmails sendEmails;
 
-	@Scheduled(cron = "30 * 23 * * *")
+	@Scheduled(cron = "00 00 00 * * *")
 	public void verificationTasks() {
 		System.out.println("Executando tarefa => " + new Date());
 
@@ -38,13 +39,10 @@ public class VerificationTaskSendEmail {
 		Date endDate = TaskUtils.getEndTimeByDate(calendar.getTime());
 
 		List<Tasks> result = this.taskService.loadTasksPeriodAndStatus(iniDate, endDate, StatusTaskEnum.PROGRESS);
-		
+
 		for (Tasks tasks : result) {
-			System.out.println(tasks.getUser().getPermissionEMails());
-			System.out.println("oioii");
-			if((tasks.getUser().getPermissionEMails()).toString().equals("APPROVED")) {
-			System.out.println("aqui passou");
-			this.sendEmails.sendEmailDeadlineTasks(tasks.getUser().getEmailUser(), ParseUtils.parseTask(tasks));
+			if (EmailPermissionsUserEnum.APPROVED.equals(tasks.getUser().getPermissionEMails())) {
+				this.sendEmails.sendEmailDeadlineTasks(tasks.getUser().getEmailUser(), ParseUtils.parseTask(tasks));
 			}
 		}
 	}
