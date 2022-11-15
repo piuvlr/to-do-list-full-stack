@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.caio.todo.tasks.bo.TaskBO;
 import br.com.caio.todo.tasks.bo.UserBO;
@@ -94,5 +95,19 @@ public class TaskServiceImpl implements TaskService {
 		
 		List<Tasks> result = taskBO.loadTasksPeriodAndStatus(iniDate, endDate, statusTaskEnum);
 		return result;
+	}
+
+	@Override
+	@Transactional
+	public void editTask(TasksVO tasksVO) {
+		Tasks tasks = this.taskBO.findTaskById(tasksVO.getId());
+		
+		tasks.setDescription(tasksVO.getDescription());
+		tasks.setNameTask(tasksVO.getNameTask());
+		
+		if (tasksVO.getDeadlineDate() != null) {
+			tasks.setDeadlineDate(tasksVO.getDeadlineDate());
+		}
+		
 	}
 }

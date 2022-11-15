@@ -25,4 +25,6 @@ public interface TaskService {
 	public TasksVO concluidTask(Integer id);
 	
 	public List<Tasks> loadTasksPeriodAndStatus(Date iniDate, Date endDate, StatusTaskEnum statusTaskEnum);
+
+	public void editTask(TasksVO tasksVO);
 }

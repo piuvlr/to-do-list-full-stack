@@ -9,17 +9,21 @@
         <div *ngFor="let task of taskInProgress">
           <mat-grid-tile>
             <mat-card>
-              <mat-card-subtitle>
-                <span>
-                  {{ task.creationDate | date: "dd/MM/yyyy"}}
-                  <span *ngIf="task.deadlineDate">- {{ task.deadlineDate | date: "dd/MM/yyyy"}}</span>
-                  <span *ngIf="!task.deadlineDate">// --/--/---</span>
-                </span>
-              </mat-card-subtitle>
-              <mat-card-title>{{ task.nameTask }}</mat-card-title>
-              <mat-card-content>
-                <p>{{ task.description }}</p>
-              </mat-card-content>
+              <a style="color: inherit;" class="cursor-pointer hover:bg-slate-800" (click)="editTask(task)">
+                <div>
+                  <mat-card-subtitle>
+                    <span>
+                      {{ task.creationDate | date: "dd/MM/yyyy"}}
+                      <span *ngIf="task.deadlineDate">- {{ task.deadlineDate | date: "dd/MM/yyyy"}}</span>
+                      <span *ngIf="!task.deadlineDate">// --/--/---</span>
+                    </span>
+                  </mat-card-subtitle>
+                  <mat-card-title>{{ task.nameTask }}</mat-card-title>
+                  <mat-card-content>
+                    <p>{{ task.description }}</p>
+                  </mat-card-content>
+                </div>
+              </a>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
                 <button (click)="completedTask(task)" mat-button>Concluída</button>

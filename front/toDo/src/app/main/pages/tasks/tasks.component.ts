@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { TaskModel } from '../../models/task';
 import { TasksService } from '../../services/tasks.service';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'app-tasks',
@@ -13,7 +15,7 @@ export class TasksComponent implements OnInit {
   taskCompleted: TaskModel[] = [];
   breakpoint: number = 3;
 
-  constructor(private _taskService: TasksService) { }
+  constructor(private _taskService: TasksService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.responsiveGrid();
@@ -76,6 +78,18 @@ export class TasksComponent implements OnInit {
         }
       }
     )
+  }
+
+  editTask(task: TaskModel) {
+    const dialogRef = this.dialog.open(EditTaskComponent,
+      {data: task})
+
+      dialogRef.afterClosed().subscribe(
+        () => {
+          this.taskInProgress = []
+          this.listTasks();
+        }
+      )
   }
 
   private responsiveGrid(): void {

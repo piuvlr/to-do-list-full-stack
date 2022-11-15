@@ -20,6 +20,8 @@ import { TasksComponent } from './pages/tasks/tasks.component';
 import { UtilsInterceptor } from './utils.interceptor';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatCheckboxModule} from '@angular/material/checkbox';
+import { EditTaskComponent } from './pages/edit-task/edit-task.component';
+import { MatDialogModule } from '@angular/material/dialog'
 
 
 
@@ -30,7 +32,8 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
     LoginComponent,
     RegisterComponent,
     TasksComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,8 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
     MatNativeDateModule,
     MatDatepickerModule,
     MatBadgeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UtilsInterceptor, multi: true },

@@ -26,4 +26,8 @@ export class TasksService {
   public putEditTask(id: number): Observable<TaskModel> {
     return this.httpClient.put<TaskModel>(`${environment.SERVER}/tasks`,  id );
   }
+
+  public postEditTask(task: TaskModel): Observable<TaskModel> {
+    return this.httpClient.post<TaskModel>(`${environment.SERVER}/tasks/edit`,  task);
+  }
 }
