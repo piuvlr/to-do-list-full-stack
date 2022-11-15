@@ -26,7 +26,7 @@ public class VerificationTaskSendEmail {
 	@Autowired
 	SendEmails sendEmails;
 
-	@Scheduled(cron = "00 00 00 * * *")
+	@Scheduled(cron = "30 * 23 * * *")
 	public void verificationTasks() {
 		System.out.println("Executando tarefa => " + new Date());
 
@@ -38,9 +38,14 @@ public class VerificationTaskSendEmail {
 		Date endDate = TaskUtils.getEndTimeByDate(calendar.getTime());
 
 		List<Tasks> result = this.taskService.loadTasksPeriodAndStatus(iniDate, endDate, StatusTaskEnum.PROGRESS);
-
+		
 		for (Tasks tasks : result) {
+			System.out.println(tasks.getUser().getPermissionEMails());
+			System.out.println("oioii");
+			if((tasks.getUser().getPermissionEMails()).toString().equals("APPROVED")) {
+			System.out.println("aqui passou");
 			this.sendEmails.sendEmailDeadlineTasks(tasks.getUser().getEmailUser(), ParseUtils.parseTask(tasks));
+			}
 		}
 	}
 
