@@ -7,5 +7,5 @@ export class TaskModel {
     public creationDate: Date,
     public completedDate: Date,
     public deadlineDate: Date,
-    public userName: String,) {}
+    public userName: String) {}
 }

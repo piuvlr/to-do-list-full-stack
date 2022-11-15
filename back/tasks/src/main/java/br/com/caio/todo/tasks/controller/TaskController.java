@@ -70,12 +70,20 @@ public class TaskController {
 		return new ResponseEntity<List<TasksVO>>(result, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT)
 	@Transactional
+	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<TasksVO> concluedTask(@RequestBody int idTask) {
 		
 		TasksVO result = taskService.concluidTask(idTask);
 		
 		return new ResponseEntity<TasksVO>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> editTask(@RequestBody TasksVO tasksVO) {
+		
+		this.taskService.editTask(tasksVO);
+		
+		return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
 	}
 }

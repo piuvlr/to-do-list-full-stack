@@ -1,0 +1,30 @@
+<div>
+     <h1 mat-dialog-title>Editar task</h1>
+     <div mat-dialog-content>
+          <form class="flex flex-col" [formGroup]="editTaskForm">
+               <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Titulo da tarefa</mat-label>
+                    <input [formControlName]="'nameTask'" matInput placeholder="Nome da tarefa">
+                    <mat-hint>O titulo desta tarefa</mat-hint>
+               </mat-form-field>
+
+               <mat-form-field class="w-full mt-2" appearance="outline">
+                    <mat-label>Descrição</mat-label>
+                    <input [formControlName]="'description'" matInput placeholder="descrição da tarefa">
+                    <mat-hint>Digite a descrição da tarefa</mat-hint>
+               </mat-form-field>
+
+               <mat-form-field class="w-full mt-2" appearance="outline">
+                    <mat-label>Data de vencimento</mat-label>
+                    <input [formControlName]="'deadlineDate'" matInput [matDatepicker]="picker">
+                    <mat-hint>Digite a data de vencimento</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+               </mat-form-field>
+          </form>
+     </div>
+     <div mat-dialog-actions>
+          <button [disabled]="editTaskForm.invalid" (click)="editTask()" mat-button>EDITAR TAREFA</button>
+          <button (click)="close()" mat-button>CANCELAR</button>
+     </div>
+</div>
