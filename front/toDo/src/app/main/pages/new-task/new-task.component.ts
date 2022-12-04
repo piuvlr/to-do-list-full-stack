@@ -2,12 +2,11 @@ import { Router } from '@angular/router';
 import { TasksService } from './../../services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TaskModel } from '../../models/task';
+import { TaskModel } from '../../models/task.model';
 
 @Component({
   selector: 'app-new-task',
   templateUrl: './new-task.component.html',
-  styleUrls: ['./new-task.component.scss']
 })
 export class NewTaskComponent implements OnInit {
 
@@ -30,13 +29,13 @@ export class NewTaskComponent implements OnInit {
 
     this._tasksService.postTask(task).subscribe({
       next: (success) => {
-        this._router.navigateByUrl('tasks')
+        this._router.navigateByUrl('/tasks')
       }
     })
   }
 
   cancel() {
-    this._router.navigateByUrl('tasks')
+    this._router.navigateByUrl('/tasks')
   }
 
 }

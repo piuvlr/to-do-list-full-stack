@@ -1,13 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TaskModel } from '../../models/task';
+import { TaskModel } from '../../models/task.model';
 import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent implements OnInit {
 
@@ -28,18 +27,16 @@ export class EditTaskComponent implements OnInit {
   }
 
   editTask(): void {
-    const data = this.editTaskForm.getRawValue();
+    const editTaskValuesForm = this.editTaskForm.getRawValue();
 
-    this._taskService.postEditTask(data).subscribe({
+    this._taskService.postEditTask(editTaskValuesForm).subscribe({
       next: () => {
         this.close();
       }
     })
-
   }
 
   close() {
     this.dialogRef.close();
   }
-
 }

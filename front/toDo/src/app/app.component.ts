@@ -22,12 +22,8 @@ export class AppComponent {
   }
 
   logout(): void {
-    this._authenticationService.logout().subscribe({
-      next: (success) => {
-        localStorage.clear();
-        this._router.navigateByUrl('/login')
-        this._authenticationService.isLogin = false
-      }
-    });
+    this._authenticationService.logout()
+    this._router.navigateByUrl('/login')
+    this._authenticationService.isLogin = false
   }
 }

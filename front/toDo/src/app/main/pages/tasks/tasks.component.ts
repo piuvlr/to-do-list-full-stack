@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskModel } from '../../models/task';
+import { TaskModel } from '../../models/task.model';
 import { TasksService } from '../../services/tasks.service';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
 

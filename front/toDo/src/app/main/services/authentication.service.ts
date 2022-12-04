@@ -1,7 +1,9 @@
-import { Observable, Subject } from 'rxjs';
+import { UserModel } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { TokenModel } from './../models/token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +14,28 @@ export class AuthenticationService {
 
   private _loginSuccess = new Subject<boolean>();
 
-  postLogin(userName: string, password: string): Observable<any> {
+  postLogin(userName: string, password: string): Observable<TokenModel> {
     const body = {
       userName: userName,
       password: password
     }
 
-    return this._httpClient.post<any>(`${environment.SERVER}/user/login`, body);
+    return this._httpClient.post<TokenModel>(`${environment.SERVER}/user/login`, body);
   }
 
-  registerUser(userName: string, token: any): void {
+  registerUser(userName: string, token: TokenModel): void {
     localStorage.setItem('userName', userName);
     localStorage.setItem('token', token.token);
     localStorage.setItem('typeToken', token.typeRequest);
   }
 
-  postRegister(register: any): Observable<any> {
-    return this._httpClient.post<any>(`${environment.SERVER}/user/register`, register)
+  postRegister(register: UserModel): Observable<UserModel> {
+    return this._httpClient.post<UserModel>(`${environment.SERVER}/user/register`, register)
   }
 
-  logout(): Observable<any> {
-    return this._httpClient.post<any>(`${environment.SERVER}/user/logout`, null)
+  logout(): boolean {
+    localStorage.clear()
+    return true;
   }
 
   set isLogin(isLogin: boolean) {

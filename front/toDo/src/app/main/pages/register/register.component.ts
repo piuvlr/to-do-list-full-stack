@@ -1,3 +1,4 @@
+import { UserModel } from './../../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,7 +8,6 @@ import { AuthenticationService } from '../../services/authentication.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit {
     this._router.navigateByUrl('login');
   }
 
-  postUser() {
-    const register = this.formLogin.getRawValue();
+  registerUser() {
+    const register: UserModel = this.formLogin.getRawValue();
 
     register.emailPermissionsUserEnum = register.emailPermissionsUserEnum ? "APPROVED" : "DENIED";
 
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  postLogin(login: {userName: string, password: string}) {
+  postLogin(login: UserModel) {
     this.__authenticationService.postLogin(login.userName, login.password).subscribe({
       next: (success) => {
         this.__authenticationService.registerUser(login.userName, success)
@@ -63,5 +63,4 @@ export class RegisterComponent implements OnInit {
       duration: 2500,
     });
   }
-
 }
